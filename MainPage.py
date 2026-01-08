@@ -4,4 +4,5 @@ import streamlit as st
 class MainPage: 
 
     # Variable definitions
-    mainLabel = st.text('Hello world!')
+    mainLabel = st.title('PriceWatch: A Price Comparison Tool for Fair Resale Valuation of Luxury Watches')
+    logo = st.image()
