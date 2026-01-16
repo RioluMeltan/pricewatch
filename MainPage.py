@@ -32,4 +32,20 @@ class MainPage:
 
     # Method to import a list from clipboard
     def importList(): 
-        imported_content = clipboard_component.paste_component('Read Clipboard') # Goes to session_state
+
+        # Import from clipboard
+        imported_content = clipboard_component.paste_component('Read Clipboard')
+
+        # Iterate through formatted content
+        for i in imported_content.split(','): 
+
+            # Exception handling
+            try: 
+
+                # Append to list
+                st.session_state.watches.append(i) # PLACEHOLDER CODE, REMEMBER TO CHANGE THIS LATER
+
+            except: 
+
+                # Exception message
+                st.toast('An error occurred. Ensure that your pasted list is formatted correctly.')
