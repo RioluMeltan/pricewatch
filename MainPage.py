@@ -1,6 +1,7 @@
 # Import statements
 import streamlit as st
 import PIL
+import clipboard_component
 
 # Static class to represent the homepage
 class MainPage: 
@@ -28,3 +29,6 @@ class MainPage:
 
     with col_3: 
         exportListButton = st.button('Export Watchlist')
+
+    # Method to import a list from clipboard
+    def importList(): 
