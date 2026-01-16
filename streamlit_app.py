@@ -1,4 +1,5 @@
 import streamlit as st
+import PIL
 
 # Variable definitions
 mainLabel = st.title('PriceWatch: A Price Comparison Tool for Fair Resale Valuation of Luxury Watches')
