@@ -2,7 +2,7 @@ import streamlit as st
 
 # Variable definitions
 mainLabel = st.title('PriceWatch: A Price Comparison Tool for Fair Resale Valuation of Luxury Watches')
-# logo = st.sidebar.image(PIL.Image.open())
+logo = st.sidebar.image(PIL.Image.open())
 addWatch = st.sidebar.title('Add Watch')
 watchTextBox = st.sidebar.text_input('Enter Watch Below')
 searchWatchButton = st.sidebar.button('Search for Watch')
