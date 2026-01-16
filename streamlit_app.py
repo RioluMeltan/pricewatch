@@ -1,6 +1,8 @@
 import streamlit as st
 import PIL
 
+st.set_page_config(layout = 'wide')
+
 # Variable definitions
 mainLabel = st.title('PriceWatch: A Price Comparison Tool for Fair Resale Valuation of Luxury Watches')
 # logo = st.sidebar.image(PIL.Image.open())
