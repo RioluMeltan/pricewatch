@@ -17,7 +17,7 @@ class MainPage:
     watchTextBox = st.sidebar.text_input('Enter watch here')
     searchWatchButton = st.sidebar.button('Search for Watch')
     importListButton = st.sidebar.button('Import List from Clipboard')
-    watches = []
+    watches = [] # Goes to session_state
 
     # Column formatting for buttons
     col_1, col_2, col_3 = st.columns([1, 1, 1])
@@ -32,4 +32,4 @@ class MainPage:
 
     # Method to import a list from clipboard
     def importList(): 
-        imported_content = clipboard_component.paste_component('Read Clipboard')
+        imported_content = clipboard_component.paste_component('Read Clipboard') # Goes to session_state
