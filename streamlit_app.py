@@ -3,14 +3,14 @@ import PIL
 
 # Variable definitions
 mainLabel = st.title('PriceWatch: A Price Comparison Tool for Fair Resale Valuation of Luxury Watches')
-logo = st.sidebar.image(PIL.Image.open())
+# logo = st.sidebar.image(PIL.Image.open())
 addWatch = st.sidebar.title('Add Watch')
 watchTextBox = st.sidebar.text_input('Enter Watch Below')
 searchWatchButton = st.sidebar.button('Search for Watch')
 importListButton = st.sidebar.button('Import List from Clipboard')
 
 # Column formatting for buttons
-col_1, col_2, col_3 = st.columns([1, 1, 1])
+col_1, col_2, col_3 = st.columns(3)
 with col_1: 
     currencyConvButton = st.button('Currency Converter')
 
