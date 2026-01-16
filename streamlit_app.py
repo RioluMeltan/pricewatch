@@ -4,8 +4,7 @@ import streamlit as st
 mainLabel = st.title('PriceWatch: A Price Comparison Tool for Fair Resale Valuation of Luxury Watches')
 # logo = st.sidebar.image(PIL.Image.open())
 addWatch = st.sidebar.title('Add Watch')
-enterWatch = st.sidebar.text('Enter Watch Below')
-watchTextBox = st.sidebar.text_input('Enter watch here')
+watchTextBox = st.sidebar.text_input('Enter Watch Below')
 searchWatchButton = st.sidebar.button('Search for Watch')
 importListButton = st.sidebar.button('Import List from Clipboard')
 
