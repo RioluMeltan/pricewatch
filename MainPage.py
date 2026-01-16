@@ -32,3 +32,4 @@ class MainPage:
 
     # Method to import a list from clipboard
     def importList(): 
+        imported_content = clipboard_component.paste_component('Read Clipboard')
