@@ -44,7 +44,7 @@ class MainPage:
             try: 
 
                 # Append to list
-                st.session_state.watches.append(i.split(' ')) # INCOMPLETE PLACEHOLDER
+                st.session_state.watches.append(Watch(i.split(' ')[0], i.split(' ')[1], i.split(' ')[2], i.split(' ')[3], i.split(' ')[4], i.split(' ')[5], i.split(' ')[6]))
 
             except: 
 
