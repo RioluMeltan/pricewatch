@@ -2,6 +2,7 @@
 import streamlit as st
 import PIL
 import clipboard_component
+from Watch import Watch
 
 # Static class to represent the homepage
 class MainPage: 
@@ -43,7 +44,7 @@ class MainPage:
             try: 
 
                 # Append to list
-                st.session_state.watches.append(i) # PLACEHOLDER CODE, REMEMBER TO CHANGE THIS LATER
+                st.session_state.watches.append(i.split(' '))
 
             except: 
 
