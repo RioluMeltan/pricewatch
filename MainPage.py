@@ -48,7 +48,10 @@ class MainPage:
         for i in chrono24.query(term).search(): 
 
             # Obtaining an image from a public URL
-            response = requests.get(i['image_urls'][0]).content
+            try: 
+                response = requests.get(i['image_urls'][0]).content
+            except: 
+                print('Image access failed.')
 
             # Obtaining a price range
             price = float(i['price'].replace('$', '').replace(',', '').strip())
@@ -75,13 +78,8 @@ class MainPage:
         # Iterate through formatted content
         for i in imported_content.split(','): 
 
-            # Exception handling
+            # Append to list
             try: 
-
-                # Append to list
                 st.session_state.watches.append(Watch(i.split(' ')[0], i.split(' ')[1], i.split(' ')[2], i.split(' ')[3], i.split(' ')[4], i.split(' ')[5], i.split(' ')[6]))
-
             except: 
-
-                # Exception message
                 st.toast('An error occurred. Ensure that your pasted list is formatted correctly.')

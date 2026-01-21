@@ -21,7 +21,10 @@ def searchWatchesModal(term):
     for i in chrono24.query(term).search(): 
 
         # Obtaining an image from a public URL
-        response = requests.get(i['image_urls'][0]).content
+        try: 
+            response = requests.get(i['image_urls'][0]).content
+        except: 
+            print('Image access failure')
 
         # Obtaining a price range
         price = float(i['price'].replace('$', '').replace(',', '').strip())
