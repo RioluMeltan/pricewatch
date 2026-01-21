@@ -9,12 +9,6 @@ import io
 from Watch import Watch
 from Watch import SearchedWatch
 
-# Patch headers globally
-chrono24.session.headers.update({
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-    "Accept-Language": "en-US,en;q=0.9",
-})
-
 # Method to search for watches and create a modal based on the given search terms, data is also cached if ever rereloaded
 @st.cache_data
 @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True)
