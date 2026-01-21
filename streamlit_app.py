@@ -35,6 +35,7 @@ def searchWatchesModal(term):
 
         # Initiating a watch object based on info returned from Chrono24
         resultList.append(SearchedWatch(PIL.Image.open(io.BytesIO(response)), i['title'], price))
+        print(resultList)
 
     # Displaying results using columns and enumerated list to cycle
     cols = st.columns(3)
