@@ -17,7 +17,7 @@ def searchWatchesModal(term):
     resultList = []
     price = 0.0
     try: 
-        query = chrono24.query(term).search()
+        query = chrono24.query(term).search(limit = 10)
     except: 
         print('Chrono24 request blocked; try again later.')
 
