@@ -38,3 +38,5 @@ def searchWatchesModal(term):
             st.image(watch.icon, use_column_width = True)
             st.text(watch.name)
             st.text(f'${watch.price}')
+
+searchWatchesModal('rolex daytona')
