@@ -35,6 +35,19 @@ class MainPage:
     with col_3: 
         exportListButton = st.button('Export Watchlist')
 
+    # Bubble sort method for lists
+    def bubbleSort(toSort): 
+
+        # Bubble sort
+        for i in range(len(toSort)):
+            for j in range(0, len(toSort) - i - 1):
+
+                # Compare elements that are next to each other
+                if toSort[j] > toSort[j + 1]:
+                    toSort[j], toSort[j + 1] = toSort[j + 1], toSort[j]
+
+        return toSort
+
     # Method to search for watches and create a modal based on the given search terms, data is also cached if ever rereloaded
     @st.cache_data
     @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True)
@@ -54,6 +67,8 @@ class MainPage:
             query = requests.get('https://svcs.ebay.com/services/search/FindingService/v1', params = params).json()
 
         except: 
+
+            # Exception handling
             print('Request unsuccessful. Try again later.')
 
         try: 
@@ -71,6 +86,8 @@ class MainPage:
                 resultList.append(SearchedWatch(PIL.Image.open(io.BytesIO(response)), i['title'][0], float(i['sellingStatus'][0]['currentPrice'][0]['__value__']), i['sellingStatus'][0]['currentPrice'][0]['@currencyId']))
 
         except: 
+
+            # Exception handling
             print('Iteration failed.')
 
         # Displaying results using columns and enumerated list to cycle
