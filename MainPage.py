@@ -21,7 +21,7 @@ class MainPage:
     watchTextBox = st.sidebar.text_input('Enter watch here')
     searchWatchButton = st.sidebar.button('Search for Watch')
     importListButton = st.sidebar.button('Import List from Clipboard')
-    watches = [] # Goes to session_state
+    st.session_state.watches = [] # Goes to session_state for persistent storage
 
     # Column formatting for buttons
     col_1, col_2, col_3 = st.columns([1, 1, 1])
