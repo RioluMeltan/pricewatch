@@ -43,7 +43,10 @@ class MainPage:
         # Variable initialization
         resultList = []
         price = 0.0
-        query = chrono24.query(term).search()
+        try: 
+            query = chrono24.query(term).search()
+        except: 
+            print('Chrono24 request blocked; try again later.')
 
         # Iterating through list
         for i in query:  
