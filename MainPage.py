@@ -49,7 +49,6 @@ class MainPage:
 
             # Obtaining an image from a public URL
             response = requests.get(i['image_urls'][0]).content
-            response.raise_for_status()
 
             # Obtaining a price range
             price = float(i['price'].replace('$', '').replace(',', '').strip())
@@ -63,8 +62,8 @@ class MainPage:
             col = cols[index % 3]
             with col:
                 st.image(watch.icon, use_column_width = True)
-                st.text(watch.name)
-                st.text(f'${watch.price}')
+                st.markdown(watch.name)
+                st.markdown(f'${watch.price}')
 
 
     # Method to import a list from clipboard
