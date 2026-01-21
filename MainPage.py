@@ -1,7 +1,6 @@
 # Import statements
 import streamlit as st
 import PIL
-import chrono24
 import clipboard_component
 import requests
 import io
@@ -22,7 +21,7 @@ class MainPage:
     watchTextBox = st.sidebar.text_input('Enter watch here')
     searchWatchButton = st.sidebar.button('Search for Watch')
     importListButton = st.sidebar.button('Import List from Clipboard')
-    st.session_state.watches = [] # Goes to session_state for persistent storage
+    st.session_state.watches = [] # Goes to session_state for persistent storage (MAYBE change? Not sure if this'll work.)
 
     # Column formatting for buttons
     col_1, col_2, col_3 = st.columns([1, 1, 1])
@@ -39,42 +38,48 @@ class MainPage:
     @st.cache_data
     @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True)
     def searchWatchesModal(term): 
-        
+
         # Variable initialization
         resultList = []
-        price = 0.0
         query = []
 
-        # Querying Chrono24 for watches
+        # Querying the API for watches
         try: 
-            query = chrono24.query(term).search(limit = 10)
+
+            # Parameters for eBay
+            params = {'OPERATION-NAME': 'findItemsByKeywords', 'SERVICE-VERSION': '1.0.0', 'SECURITY-APPNAME': st.secrets['APP_ID'], 'RESPONSE-DATA-FORMAT': 'JSON', 'REST-PAYLOAD': '', 'keywords': term, 'paginationInput.entriesPerPage': '20'}
+
+            # Performing the query
+            query = requests.get('https://svcs.ebay.com/services/search/FindingService/v1', params = params).json()
+
         except: 
-            print('Chrono24 request blocked. Try again later.')
+            print('Request unsuccessful. Try again later.')
 
-        # Iterating through list
-        for i in query:  
+        try: 
+        
+            # Iterating through list
+            for i in query['findItemsByKeywordsResponse'][0]['searchResult'][0]['item']:  
 
-            # Obtaining an image from a public URL
-            try: 
-                response = requests.get(i['image_urls'][0]).content
-            except: 
-                print('Image access failed.')
+                # Obtaining an image from a public URL
+                try: 
+                    response = requests.get(i['galleryURL'][0]).content
+                except: 
+                    print('Image access failed.')
 
-            # Obtaining a price range
-            price = float(i['price'].replace('$', '').replace(',', '').strip())
+                # Initiating a watch object based on info returned
+                resultList.append(SearchedWatch(PIL.Image.open(io.BytesIO(response)), i['title'][0], float(i['sellingStatus'][0]['currentPrice'][0]['__value__']), i['sellingStatus'][0]['currentPrice'][0]['@currencyId']))
 
-            # Initiating a watch object based on info returned from Chrono24
-            resultList.append(SearchedWatch(PIL.Image.open(io.BytesIO(response)), i['title'], price))
+        except: 
+            print('Iteration failed.')
 
         # Displaying results using columns and enumerated list to cycle
         cols = st.columns(3)
         for index, watch in enumerate(resultList): 
             col = cols[index % 3]
             with col:
-                st.image(watch.icon, use_column_width = True)
-                st.markdown(watch.name)
-                st.markdown(f'${watch.price}')
-
+                st.image(watch.getIcon(), use_column_width = True)
+                st.markdown(watch.getName())
+                st.markdown(f'${watch.getPrice()} {watch.getCurrency()}')
 
     # Method to import a list from clipboard
     def importList(): 

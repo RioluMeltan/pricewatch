@@ -2,12 +2,13 @@
 class SearchedWatch: 
 
     # Init function with default none values
-    def __init__(self, icon = None, name = None, price = None): 
+    def __init__(self, icon = None, name = None, price = None, currency = None): 
 
         # Initiates variables with default values
         self.__icon = icon
         self.__name = name or 'Name not found'
         self.__price = price if price is not None else 0.0
+        self.__currency = currency or 'USD'
     
     # Getter methods
     def getIcon(self): 
@@ -19,6 +20,9 @@ class SearchedWatch:
     def getPrice(self): 
         return self.__price
 
+    def getCurrency(self): 
+        return self.__currency
+
     # Setter methods
     def setIcon(self, icon): 
         self.__icon = icon
@@ -28,6 +32,9 @@ class SearchedWatch:
 
     def setPrice(self, price): 
         self.__price = price
+
+    def setCurrency(self, currency): 
+        self.__currency = currency
 
 # Extends from SearchedWatch
 class Watch(SearchedWatch): 
