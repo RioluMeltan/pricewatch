@@ -1,15 +1,9 @@
-# Import statements
-import streamlit as st
-import chrono24
-import PIL
-
-
 # Dynamic class for creation of a SearchedWatch class
 class SearchedWatch: 
 
     # Init function with default none values
     def __init__(self, icon = None, name = None, price = None): 
-        
+
         # Initiates variables with default values
         self.__icon = icon
         self.__name = name or 'Name not found'
