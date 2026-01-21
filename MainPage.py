@@ -1,6 +1,7 @@
 # Import statements
 import streamlit as st
 import PIL
+import chrono24
 import clipboard_component
 from Watch import Watch
 
@@ -30,6 +31,13 @@ class MainPage:
 
     with col_3: 
         exportListButton = st.button('Export Watchlist')
+
+    # Method to search for watches and create a modal based on the given search terms
+    @st.dialog(title = 'Watch Search Results', width = 'large', dismissible = True)
+    def searchWatchesModal(term): 
+        resultList = []
+        for i in chrono24.query(term).search(): 
+            resultList.append(Watch(i['title'], ))
 
     # Method to import a list from clipboard
     def importList(): 

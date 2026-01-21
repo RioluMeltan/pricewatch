@@ -50,14 +50,14 @@ class Watch:
     def setPriceRange(self, priceRange): 
         self.__priceRange = priceRange
     
-    def getPriceGraph(self, priceGraph): 
+    def setPriceGraph(self, priceGraph): 
         self.__priceGraph = priceGraph
 
-    def getReliability(self, reliability): 
+    def setReliability(self, reliability): 
         self.__reliability = reliability
     
-    def getSentiment(self, sentiment): 
+    def setSentiment(self, sentiment): 
         self.__sentiment = sentiment
     
-    def getFinalRating(self, finalRating): 
+    def setFinalRating(self, finalRating): 
         self.__finalRating = finalRating
