@@ -4,6 +4,7 @@ import PIL
 import clipboard_component
 import requests
 import io
+import pyperclip
 from Watch import Watch
 from Watch import SearchedWatch
 
@@ -95,3 +96,9 @@ class MainPage:
                 st.session_state.watches.append(Watch(i.split(' ')[0], i.split(' ')[1], i.split(' ')[2], i.split(' ')[3], i.split(' ')[4], i.split(' ')[5], i.split(' ')[6]))
             except: 
                 st.toast('An error occurred. Ensure that your pasted list is formatted correctly.')
+
+    # Simple method to copy the resale price to the clipboard
+    def priceToClipboard(price, currency): 
+        
+        # Pyperclip copy
+        pyperclip.copy(f'$ {price} {currency}')

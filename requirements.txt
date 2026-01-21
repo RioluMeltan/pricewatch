@@ -2,3 +2,4 @@ streamlit
 streamlit-clipboard
 Pillow
 requests
+pyperclip
