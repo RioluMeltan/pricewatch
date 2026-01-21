@@ -43,9 +43,10 @@ class MainPage:
         # Variable initialization
         resultList = []
         price = 0.0
+        query = chrono24.query(term).search()
 
         # Iterating through list
-        for i in chrono24.query(term).search(): 
+        for i in query:  
 
             # Obtaining an image from a public URL
             try: 
