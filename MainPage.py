@@ -43,8 +43,11 @@ class MainPage:
         # Variable initialization
         resultList = []
         price = 0.0
+        query = []
+
+        # Querying Chrono24 for watches
         try: 
-            query = chrono24.query(term).search()
+            query = chrono24.query(term).search(limit = 10)
         except: 
             print('Chrono24 request blocked; try again later.')
 
