@@ -49,7 +49,7 @@ class MainPage:
         try: 
             query = chrono24.query(term).search(limit = 10)
         except: 
-            print('Chrono24 request blocked; try again later.')
+            print('Chrono24 request blocked. Try again later.')
 
         # Iterating through list
         for i in query:  
