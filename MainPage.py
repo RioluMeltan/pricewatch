@@ -35,6 +35,23 @@ class MainPage:
     with col_3: 
         exportListButton = st.button('Export Watchlist')
 
+    # Method to calculate a reliability score for a watch query
+    def reliabilityCalc(term): 
+
+         # Querying the API for watches
+        try: 
+
+            # Parameters for eBay
+            params = {'OPERATION-NAME': 'findItemsByKeywords', 'SERVICE-VERSION': '1.0.0', 'SECURITY-APPNAME': st.secrets['APP_ID'], 'RESPONSE-DATA-FORMAT': 'JSON', 'REST-PAYLOAD': '', 'keywords': term, 'paginationInput.entriesPerPage': '20'}
+
+            # Performing the query
+            query = requests.get('https://svcs.ebay.com/services/search/FindingService/v1', params = params).json()
+
+        except: 
+
+            # Exception handling
+            print('Request unsuccessful. Try again later.')
+
     # Bubble sort method for lists
     def bubbleSort(toSort): 
 
