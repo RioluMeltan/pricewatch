@@ -35,7 +35,48 @@ class MainPage:
     with col_3: 
         exportListButton = st.button('Export Watchlist')
 
-    # Method to calculate a reliability score for a watch query
+    # Static method to find minimum in a list
+    @staticmethod
+    def findMin(toFind): 
+        smallest = toFind[0]
+        for i in toFind[1:]: 
+            if i < smallest:
+                smallest = i
+        return smallest
+
+    # Static method to find maximum in a list
+    @staticmethod
+    def findMax(toFind): 
+        largest = toFind[0]
+        for i in toFind[1:]: 
+            if i > largest:
+                largest = i
+        return largest
+
+    # Static method to find the sum of a list
+    @staticmethod
+    def findSum(toFind):
+        total = 0
+        for i in toFind:
+            total += i
+        return total
+
+    # Static bubble sort method for lists
+    @staticmethod
+    def bubbleSort(toSort): 
+
+        # Bubble sort
+        for i in range(len(toSort)):
+            for j in range(0, len(toSort) - i - 1):
+
+                # Compare elements that are next to each other
+                if toSort[j] > toSort[j + 1]:
+                    toSort[j], toSort[j + 1] = toSort[j + 1], toSort[j]
+
+        return toSort
+
+    # Static method to calculate a reliability score for a watch query
+    @staticmethod
     def reliabilityCalc(term): 
 
          # Querying the API for watches
@@ -51,21 +92,57 @@ class MainPage:
 
             # Exception handling
             print('Request unsuccessful. Try again later.')
+    
+        # Variable initation
+        scores = []
+        prices = []
+        finalScore = 0
 
-    # Bubble sort method for lists
-    def bubbleSort(toSort): 
+        # Iterating through results
+        for index, i in enumerate(query): 
 
-        # Bubble sort
-        for i in range(len(toSort)):
-            for j in range(0, len(toSort) - i - 1):
+            # Image status check (weighted 0.15)
+            if 'galleryURL' in i and i['galleryURL'][0].startswith('http'): 
+                scores.append(0.15)
+            else: 
+                scores.append(0.0)
 
-                # Compare elements that are next to each other
-                if toSort[j] > toSort[j + 1]:
-                    toSort[j], toSort[j + 1] = toSort[j + 1], toSort[j]
+            # Reputation check (weighted 0.35)
+            try: 
+                scores[index] += float(i['sellerInfo'][0]['positiveFeedbackPercent'][0]) * 0.35
+            except: 
+                print('Seller info could not be found.')
 
-        return toSort
+            # Listing type check (weighted 0.2)
+            try: 
+                if i['listingInfo'][0]['listingType'][0] == 'FixedPrice': 
+                    scores[index] += 0.2
+                elif i['listingInfo'][0]['listingType'][0] == 'Auction': 
+                    scores[index] += 0.1
+            except:
+                print('Pricing info could not be found.')
+            
+            # Append price to prices
+            try: 
+                prices += float(i['sellingStatus'][0]['currentPrice'][0]['__value__'])
+            except: 
+                print('Price could not be found.')
 
-    # Method to search for watches and create a modal based on the given search terms, data is also cached if ever rereloaded
+        # Final averaging
+        for i in scores: 
+            finalScore += i
+            finalScore /= len(scores)
+
+        # Price checking (weighted 0.3)
+        if (MainPage.findMax(prices) - MainPage.findMin(prices)) / (MainPage.findSum(prices) / len(prices)) <= 1: 
+            finalScore += (MainPage.findMax(prices) - MainPage.findMin(prices)) / (MainPage.findSum(prices) / len(prices)) * 0.3
+        elif (MainPage.findMax(prices) - MainPage.findMin(prices)) / (MainPage.findSum(prices) / len(prices)) > 1: 
+            finalScore += 0.3
+
+        return int(finalScore * 100)
+
+    # Static method to search for watches and create a modal based on the given search terms, data is also cached if ever rereloaded
+    @staticmethod
     @st.cache_data
     @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True)
     def searchWatchesModal(term): 
@@ -116,7 +193,8 @@ class MainPage:
                 st.markdown(watch.getName())
                 st.markdown(f'${watch.getPrice()} {watch.getCurrency()}')
 
-    # Method to import a list from clipboard
+    # Static method to import a list from clipboard
+    @staticmethod
     def importList(): 
 
         # Import from clipboard
@@ -131,7 +209,8 @@ class MainPage:
             except: 
                 st.toast('An error occurred. Ensure that your pasted list is formatted correctly.')
 
-    # Simple method to copy the resale price to the clipboard
+    # Static method to copy the resale price to the clipboard
+    @staticmethod
     def priceToClipboard(price, currency): 
         
         # Pyperclip copy
