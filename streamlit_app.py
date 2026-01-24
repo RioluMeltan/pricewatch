@@ -14,6 +14,7 @@ def searchWatchesModal(term):
     # Variable initialization
     resultList = []
     query = []
+    print('yep')
 
     # Querying the API for watches
     try: 
