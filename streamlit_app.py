@@ -24,6 +24,7 @@ def searchWatchesModal(term):
         # Performing the query
         query = requests.get('https://svcs.ebay.com/services/search/FindingService/v1', params = params).json()
         st.write(query)
+        st.write(st.secrets['APP_ID'])
 
     except: 
 
