@@ -57,4 +57,5 @@ def searchWatchesModal(term):
             st.markdown(watch.getName())
             st.markdown(f'${watch.getPrice()} {watch.getCurrency()}')
 
-searchWatchesModal('rolex daytona')
+if st.button('testing'): 
+    searchWatchesModal('rolex daytona')
