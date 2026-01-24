@@ -14,7 +14,6 @@ def searchWatchesModal(term):
     # Variable initialization
     resultList = []
     query = []
-    st.toast('yo')
 
     # Querying the API for watches
     try: 
@@ -28,7 +27,7 @@ def searchWatchesModal(term):
     except: 
 
         # Exception handling
-        print('Request unsuccessful. Try again later.')
+        st.toast('Request unsuccessful. Try again later.')
 
     try: 
     
