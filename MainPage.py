@@ -219,12 +219,13 @@ class MainPage:
 
                 # Obtaining an image from a public URL
                 try: 
-                    response = requests.get(i['image']['imageUrl']).content
+                    response = io.BytesIO(requests.get(i['image']['imageUrl']).content)
                 except: 
+                    response = 'watch_not_found.png'
                     print('Image access failed.')
 
                 # Initiating a watch object based on info returned
-                resultList.append(SearchedWatch(PIL.Image.open(io.BytesIO(response)), i['title'], float(i['price']['value']), i['price']['currency']))
+                resultList.append(SearchedWatch(PIL.Image.open(response), i['title'], float(i['price']['value']), i['price']['currency']))
 
         except: 
 
