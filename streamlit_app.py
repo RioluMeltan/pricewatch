@@ -51,6 +51,7 @@ def searchWatchesModal(term):
                 print('Image access failed.')
 
             # Initiating a watch object based on info returned
+            st.write(SearchedWatch(PIL.Image.open('watch_not_found.png'), i['title'], float(i['price']['value']), i['price']['currency']))
             resultList.append(SearchedWatch(PIL.Image.open('watch_not_found.png'), i['title'], float(i['price']['value']), i['price']['currency']))
 
     except: 
