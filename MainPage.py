@@ -6,6 +6,7 @@ import requests
 import io
 import pyperclip
 import GoogleNews
+import base64
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from Watch import Watch
 from Watch import SearchedWatch
@@ -84,11 +85,17 @@ class MainPage:
          # Querying the API for watches
         try: 
 
-            # Parameters for eBay
-            params = {'OPERATION-NAME': 'findItemsByKeywords', 'SERVICE-VERSION': '1.0.0', 'SECURITY-APPNAME': st.secrets['APP_ID'], 'RESPONSE-DATA-FORMAT': 'JSON', 'REST-PAYLOAD': '', 'keywords': term, 'paginationInput.entriesPerPage': '20'}
+            # Parameters and headers for eBay
+            client_id = st.secrets['CLIENT_ID']
+            client_secret = st.secrets['CLIENT_SECRET']
+            auth = base64.b64encode(f"{client_id}:{client_secret}".encode()).decode()
+            headers = {'Authorization': f'Basic {auth}', 'Content-Type': 'application/x-www-form-urlencoded'}
+            data = {'grant_type': 'client_credentials', 'scope': 'https://api.ebay.com/oauth/api_scope'}
+            token = requests.post('https://api.ebay.com/identity/v1/oauth2/token', headers = headers, data = data).json()['access_token']
 
-            # Performing the query
-            query = requests.get('https://svcs.ebay.com/services/search/FindingService/v1', params = params).json()
+            # Querying for watches
+            headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
+            query = requests.get('https://api.ebay.com/buy/browse/v1/item_summary/search', headers = headers, params = {'q': term, 'limit': 20}).json().get('itemSummaries', [])
 
         except: 
 
@@ -104,29 +111,29 @@ class MainPage:
         for index, i in enumerate(query): 
 
             # Image status check (weighted 0.15)
-            if 'galleryURL' in i and i['galleryURL'][0].startswith('http'): 
+            if 'image' in i and 'imageUrl' in i['image']: 
                 scores.append(0.15)
             else: 
                 scores.append(0.0)
 
             # Reputation check (weighted 0.35)
             try: 
-                scores[index] += float(i['sellerInfo'][0]['positiveFeedbackPercent'][0]) * 0.35
+                scores[index] += float(i['seller']['feedbackPercentage']) * 0.35
             except: 
                 print('Seller info could not be found.')
 
             # Listing type check (weighted 0.2)
             try: 
-                if i['listingInfo'][0]['listingType'][0] == 'FixedPrice': 
+                if i['buyingOptions'][0] == 'FIXED_PRICE': 
                     scores[index] += 0.2
-                elif i['listingInfo'][0]['listingType'][0] == 'Auction': 
+                elif i['buyingOptions'][0] == 'AUCTION': 
                     scores[index] += 0.1
             except:
                 print('Pricing info could not be found.')
             
             # Append price to prices
             try: 
-                prices += float(i['sellingStatus'][0]['currentPrice'][0]['__value__'])
+                prices.append(float(i['price']['value']))
             except: 
                 print('Price could not be found.')
 
@@ -188,11 +195,17 @@ class MainPage:
         # Exception handling
         try: 
 
-            # Parameters for eBay
-            params = {'OPERATION-NAME': 'findItemsByKeywords', 'SERVICE-VERSION': '1.0.0', 'SECURITY-APPNAME': st.secrets['APP_ID'], 'RESPONSE-DATA-FORMAT': 'JSON', 'REST-PAYLOAD': '', 'keywords': term, 'paginationInput.entriesPerPage': '20'}
+            # Parameters and headers for eBay
+            client_id = st.secrets['CLIENT_ID']
+            client_secret = st.secrets['CLIENT_SECRET']
+            auth = base64.b64encode(f"{client_id}:{client_secret}".encode()).decode()
+            headers = {'Authorization': f'Basic {auth}', 'Content-Type': 'application/x-www-form-urlencoded'}
+            data = {'grant_type': 'client_credentials', 'scope': 'https://api.ebay.com/oauth/api_scope'}
+            token = requests.post('https://api.ebay.com/identity/v1/oauth2/token', headers = headers, data = data).json()['access_token']
 
-            # Performing the API query for the watch
-            query = requests.get('https://svcs.ebay.com/services/search/FindingService/v1', params = params).json()
+            # Querying for watches
+            headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
+            query = requests.get('https://api.ebay.com/buy/browse/v1/item_summary/search', headers = headers, params = {'q': term, 'limit': 20}).json().get('itemSummaries', [])
 
         except: 
 
@@ -203,16 +216,16 @@ class MainPage:
         try: 
         
             # Iterating through list
-            for i in query['findItemsByKeywordsResponse'][0]['searchResult'][0]['item']:  
+            for i in query:  
 
                 # Obtaining an image from a public URL
                 try: 
-                    response = requests.get(i['galleryURL'][0]).content
+                    response = requests.get(i['image']['imageUrl']).content
                 except: 
                     print('Image access failed.')
 
                 # Initiating a watch object based on info returned
-                resultList.append(SearchedWatch(PIL.Image.open(io.BytesIO(response)), i['title'][0], float(i['sellingStatus'][0]['currentPrice'][0]['__value__']), i['sellingStatus'][0]['currentPrice'][0]['@currencyId']))
+                resultList.append(SearchedWatch(PIL.Image.open(io.BytesIO(response)), i['title'], float(i['price']['value']), i['price']['currency']))
 
         except: 
 
