@@ -5,6 +5,8 @@ import clipboard_component
 import requests
 import io
 import pyperclip
+import GoogleNews
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from Watch import Watch
 from Watch import SearchedWatch
 
@@ -140,6 +142,38 @@ class MainPage:
             finalScore += 0.3
 
         return int(finalScore * 100)
+
+    # Static method to calculate the sentiment for a watch query using GoogleNews
+    @staticmethod
+    def sentimentCalc(term): 
+
+        # Exception handling
+        try: 
+        
+            # Accessing and searching the past week of GoogleNews for a watch
+            news = GoogleNews.GoogleNews(lang = 'en', period = '7d')
+            news.search(term)
+
+            # Separating headlines and paragraphs into lists
+            headlines = [item['title'] for item in news.result() if item.get('title')]
+            paragraphs = [body['desc'] for body in news.result() if body.get('title')]
+
+            # Accessing a pre-existing lexicon for sentiment analysis
+            sia = SentimentIntensityAnalyzer(lexicon_file = 'sentiment/vader_lexicon/vader_lexicon.txt')
+
+            # Setting original sentiment score as headline sentiment score before adding the sentiment scores of the paragraphs
+            sentiment_scores = [sia.polarity_scores(headline)['compound'] for headline in headlines]
+            sentiment_scores += [sia.polarity_scores(paragraph)['compound'] for paragraph in paragraphs]
+
+            # Calculating an average sentiment for all results
+            avg_sentiment = sum(sentiment_scores) / len(sentiment_scores) if sentiment_scores else 0
+
+        except: 
+
+            # Default sentiment if something fails
+            avg_sentiment = 0.0
+
+        return avg_sentiment
 
     # Static method to search for watches and create a modal based on the given search terms, data is also cached if ever rereloaded
     @staticmethod

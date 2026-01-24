@@ -3,3 +3,5 @@ streamlit-clipboard
 Pillow
 requests
 pyperclip
+GoogleNews
+nltk
