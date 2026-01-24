@@ -8,6 +8,7 @@ import pyperclip
 from Watch import Watch
 from Watch import SearchedWatch
 
+@st.cache_data
 @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True)
 def searchWatchesModal(term): 
 
