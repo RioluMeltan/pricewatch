@@ -49,7 +49,7 @@ def searchWatchesModal(term):
             try: 
                 response = requests.get(i['image']['imageUrl']).content
             except: 
-                print('Image access failed.')
+                st.toast('Image access failed.')
 
             # Initiating a watch object based on info returned
             resultList.append(SearchedWatch(PIL.Image.open(io.BytesIO(response)), i['title'], float(i['price']['value']), i['price']['currency']))
