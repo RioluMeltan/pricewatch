@@ -1,11 +1,11 @@
 # I'll fix this later
 import streamlit as st
-import PIL
 import clipboard_component
 import requests
 import io
 import pyperclip
 import base64
+from PIL import Image
 from Watch import Watch
 from Watch import SearchedWatch
 
@@ -51,14 +51,13 @@ def searchWatchesModal(term):
                 print('Image access failed.')
 
             # Initiating a watch object based on info returned
-            st.write(SearchedWatch(PIL.Image.open('watch_not_found.png'), i['title'], float(i['price']['value']), i['price']['currency']))
-            resultList.append(SearchedWatch(PIL.Image.open('watch_not_found.png'), i['title'], float(i['price']['value']), i['price']['currency']))
+            st.write(SearchedWatch(Image.open('watch_not_found.png'), i['title'], float(i['price']['value']), i['price']['currency']))
+            resultList.append(SearchedWatch(Image.open('watch_not_found.png'), i['title'], float(i['price']['value']), i['price']['currency']))
 
-    except Exception as dfgkjh: 
+    except Exception: 
 
         # Exception handling
         print('Iteration failed.')
-        st.write(dfgkjh)
 
     # Displaying results using columns and enumerated list to cycle
     cols = st.columns(3)

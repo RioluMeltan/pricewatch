@@ -1,12 +1,12 @@
 # Import statements
 import streamlit as st
-import PIL
 import clipboard_component
 import requests
 import io
 import pyperclip
 import GoogleNews
 import base64
+from PIL import Image
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from Watch import Watch
 from Watch import SearchedWatch
@@ -19,7 +19,7 @@ class MainPage:
 
     # Variable definitions
     mainLabel = st.title('PriceWatch: A Price Comparison Tool for Fair Resale Valuation of Luxury Watches')
-    logo = st.sidebar.image(PIL.Image.open())
+    logo = st.sidebar.image(Image.open())
     addWatch = st.sidebar.text('Add Watch')
     enterWatch = st.sidebar.text('Enter Watch Below')
     watchTextBox = st.sidebar.text_input('Enter watch here')
@@ -225,7 +225,7 @@ class MainPage:
                     print('Image access failed.')
 
                 # Initiating a watch object based on info returned
-                resultList.append(SearchedWatch(PIL.Image.open(response), i['title'], float(i['price']['value']), i['price']['currency']))
+                resultList.append(SearchedWatch(Image.open(response), i['title'], float(i['price']['value']), i['price']['currency']))
 
         except: 
 
