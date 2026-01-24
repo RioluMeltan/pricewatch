@@ -24,10 +24,12 @@ def searchWatchesModal(term):
         # Performing the query
         query = requests.get('https://svcs.ebay.com/services/search/FindingService/v1', params = params).json()
 
+        st.toast('?')
+
     except: 
 
         # Exception handling
-        st.toast('Request unsuccessful. Try again later.')
+        print('Request unsuccessful. Try again later.')
 
     try: 
     
