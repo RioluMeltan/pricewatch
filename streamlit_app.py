@@ -5,6 +5,7 @@ import clipboard_component
 import requests
 import io
 import pyperclip
+import base64
 from Watch import Watch
 from Watch import SearchedWatch
 
