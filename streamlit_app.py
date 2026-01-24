@@ -33,7 +33,6 @@ def searchWatchesModal(term):
         # Querying for watches
         headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
         query = requests.get('https://api.ebay.com/buy/browse/v1/item_summary/search', headers = headers, params = {'q': term, 'limit': 20}).json().get('itemSummaries', [])
-        st.write(query)
 
     except: 
 
