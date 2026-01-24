@@ -184,7 +184,6 @@ class MainPage:
 
     # Static method to search for watches and create a modal based on the given search terms, data is also cached if ever rereloaded
     @staticmethod
-    @st.cache_data
     @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True)
     def searchWatchesModal(term): 
 
