@@ -11,7 +11,6 @@ from Watch import SearchedWatch
 
 # Static method to search for watches and create a modal based on the given search terms, data is also cached if ever rereloaded
 @staticmethod
-@st.cache_data
 @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True)
 def searchWatchesModal(term): 
 
@@ -49,7 +48,7 @@ def searchWatchesModal(term):
             try: 
                 response = requests.get(i['image']['imageUrl']).content
             except: 
-                st.toast('Image access failed.')
+                print('Image access failed.')
 
             # Initiating a watch object based on info returned
             resultList.append(SearchedWatch(PIL.Image.open(io.BytesIO(response)), i['title'], float(i['price']['value']), i['price']['currency']))
