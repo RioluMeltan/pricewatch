@@ -37,6 +37,8 @@ def searchWatchesModal(term):
 
         # Exception handling
         print('Request unsuccessful. Try again later.')
+    for i in query: 
+        st.write(i)
 
     # Exception handling
     try: 
@@ -58,7 +60,6 @@ def searchWatchesModal(term):
 
         # Exception handling
         print('Iteration failed.')
-        st.write('nah')
 
     # Displaying results using columns and enumerated list to cycle
     cols = st.columns(3)
