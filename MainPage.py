@@ -185,13 +185,13 @@ class MainPage:
         resultList = []
         query = []
 
-        # Querying the API for watches
+        # Exception handling
         try: 
 
             # Parameters for eBay
             params = {'OPERATION-NAME': 'findItemsByKeywords', 'SERVICE-VERSION': '1.0.0', 'SECURITY-APPNAME': st.secrets['APP_ID'], 'RESPONSE-DATA-FORMAT': 'JSON', 'REST-PAYLOAD': '', 'keywords': term, 'paginationInput.entriesPerPage': '20'}
 
-            # Performing the query
+            # Performing the API query for the watch
             query = requests.get('https://svcs.ebay.com/services/search/FindingService/v1', params = params).json()
 
         except: 
@@ -199,6 +199,7 @@ class MainPage:
             # Exception handling
             print('Request unsuccessful. Try again later.')
 
+        # Exception handling
         try: 
         
             # Iterating through list
