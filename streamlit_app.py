@@ -58,6 +58,7 @@ def searchWatchesModal(term):
 
         # Exception handling
         print('Iteration failed.')
+        st.write('nah')
 
     # Displaying results using columns and enumerated list to cycle
     cols = st.columns(3)
