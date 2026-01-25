@@ -2,13 +2,14 @@
 class SearchedWatch: 
 
     # Init function with default none values
-    def __init__(self, icon = None, name = None, price = None, currency = None): 
+    def __init__(self, icon = None, name = None, price = None, currency = None, date = None): 
 
         # Initiates variables with default values
         self.__icon = icon
         self.__name = name or 'Name not found'
         self.__price = price if price is not None else 0.0
         self.__currency = currency or 'USD'
+        self.__date = date or 'Date not found'
     
     # Getter methods
     def getIcon(self): 
@@ -23,6 +24,9 @@ class SearchedWatch:
     def getCurrency(self): 
         return self.__currency
 
+    def getDate(self): 
+        return self.__date
+
     # Setter methods
     def setIcon(self, icon): 
         self.__icon = icon
@@ -35,6 +39,9 @@ class SearchedWatch:
 
     def setCurrency(self, currency): 
         self.__currency = currency
+
+    def setDate(self, date): 
+        self.__date = date
 
 # Extends from SearchedWatch
 class Watch(SearchedWatch): 
@@ -90,3 +97,11 @@ class Watch(SearchedWatch):
 
     def setResalePrice(self, resalePrice): 
         self.__resalePrice = resalePrice
+
+    # Return highest price
+    def returnMaxPrice(self): 
+        return self.__priceRange[1]
+
+    # Return lowest price
+    def returnMinPrice(self): 
+        return self.__priceRange[0]
