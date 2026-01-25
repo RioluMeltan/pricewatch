@@ -46,7 +46,7 @@ class Watch(SearchedWatch):
         super.__init__()
 
         # Initiates variables with default values
-        self.__priceRange = priceRange or []
+        self.__priceRange = priceRange or ()
         self.__priceGraph = priceGraph or []
         self.__reliability = reliability if reliability is not None else 0.0
         self.__sentiment = sentiment if sentiment is not None else 0.0
