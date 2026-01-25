@@ -166,7 +166,7 @@ class MainPage:
             paragraphs = [body['desc'] for body in news.result() if body.get('title')]
 
             # Accessing a pre-existing lexicon for sentiment analysis
-            sia = SentimentIntensityAnalyzer(lexicon_file = 'sentiment/vader_lexicon/vader_lexicon.txt')
+            sia = SentimentIntensityAnalyzer(lexicon_file = 'assets/vader_lexicon.txt')
 
             # Setting original sentiment score as headline sentiment score before adding the sentiment scores of the paragraphs
             sentiment_scores = [sia.polarity_scores(headline)['compound'] for headline in headlines]
@@ -221,7 +221,7 @@ class MainPage:
                 try: 
                     response = io.BytesIO(requests.get(i['image']['imageUrl']).content)
                 except: 
-                    response = 'watch_not_found.png'
+                    response = 'assets/watch_not_found.png'
                     print('Image access failed.')
 
                 # Initiating a watch object based on info returned
