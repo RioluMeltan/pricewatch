@@ -40,7 +40,7 @@ class SearchedWatch:
 class Watch(SearchedWatch): 
 
     # Init function with default None values
-    def __init__(self, priceRange = None, priceGraph = None, reliability = None, sentiment = None, finalRating = None): 
+    def __init__(self, priceRange = None, priceGraph = None, reliability = None, sentiment = None, finalRating = None, resalePrice = None): 
         
         # Parent class initiation
         super.__init__()
@@ -51,6 +51,7 @@ class Watch(SearchedWatch):
         self.__reliability = reliability if reliability is not None else 0.0
         self.__sentiment = sentiment if sentiment is not None else 0.0
         self.__finalRating = finalRating if finalRating is not None else 0.0
+        self.__resalePrice = resalePrice if resalePrice is not None else 0.0
     
     # Getter methods
     def getPriceRange(self): 
@@ -67,6 +68,9 @@ class Watch(SearchedWatch):
     
     def getFinalRating(self): 
         return self.__finalRating
+
+    def getResalePrice(self): 
+        return self.__resalePrice
     
     # Setter methods
     def setPriceRange(self, priceRange): 
@@ -83,3 +87,6 @@ class Watch(SearchedWatch):
     
     def setFinalRating(self, finalRating): 
         self.__finalRating = finalRating
+
+    def setResalePrice(self, resalePrice): 
+        self.__resalePrice = resalePrice
