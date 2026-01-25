@@ -1,8 +1,11 @@
+# Import statements
+import pandas
+
 # Dynamic class for creation of a SearchedWatch class
 class SearchedWatch: 
 
     # Init function with default none values
-    def __init__(self, icon = None, name = None, price = None, currency = None, date = None): 
+    def __init__(self, icon = None, name = None, currency = None, price = None, date = None): 
 
         # Initiates variables with default values
         self.__icon = icon
@@ -17,12 +20,12 @@ class SearchedWatch:
     
     def getName(self): 
         return self.__name
-    
-    def getPrice(self): 
-        return self.__price
 
     def getCurrency(self): 
         return self.__currency
+    
+    def getPrice(self): 
+        return self.__price
 
     def getDate(self): 
         return self.__date
@@ -34,11 +37,11 @@ class SearchedWatch:
     def setName(self, name): 
         self.__name = name
 
-    def setPrice(self, price): 
-        self.__price = price
-
     def setCurrency(self, currency): 
         self.__currency = currency
+
+    def setPrice(self, price): 
+        self.__price = price
 
     def setDate(self, date): 
         self.__date = date
@@ -47,25 +50,29 @@ class SearchedWatch:
 class Watch(SearchedWatch): 
 
     # Init function with default None values
-    def __init__(self, priceRange = None, priceGraph = None, reliability = None, sentiment = None, finalRating = None, resalePrice = None): 
+    def __init__(self, dateList = None, priceList = None, priceRange = None, reliability = None, sentiment = None, finalRating = None, resalePrice = None): 
         
         # Parent class initiation
         super.__init__()
 
         # Initiates variables with default values
+        self.__dateList = dateList or []
+        self.__priceList = priceList or []
         self.__priceRange = priceRange or ()
-        self.__priceGraph = priceGraph or []
         self.__reliability = reliability if reliability is not None else 0.0
         self.__sentiment = sentiment if sentiment is not None else 0.0
         self.__finalRating = finalRating if finalRating is not None else 0.0
         self.__resalePrice = resalePrice if resalePrice is not None else 0.0
     
     # Getter methods
+    def getDateList(self): 
+        return self.__dateList
+    
+    def getPriceList(self): 
+        return self.__priceList
+    
     def getPriceRange(self): 
         return self.__priceRange
-    
-    def getPriceGraph(self): 
-        return self.__priceGraph
 
     def getReliability(self): 
         return self.__reliability
@@ -80,11 +87,14 @@ class Watch(SearchedWatch):
         return self.__resalePrice
     
     # Setter methods
+    def setDateList(self, dateList): 
+        self.__dateList = dateList
+
+    def setPriceList(self, priceList): 
+        self.__priceList = priceList
+
     def setPriceRange(self, priceRange): 
         self.__priceRange = priceRange
-    
-    def setPriceGraph(self, priceGraph): 
-        self.__priceGraph = priceGraph
 
     def setReliability(self, reliability): 
         self.__reliability = reliability
@@ -105,3 +115,16 @@ class Watch(SearchedWatch):
     # Return lowest price
     def returnMinPrice(self): 
         return self.__priceRange[0]
+    
+    # Return graphable dataframe for prices in conjunction to date
+    def returnPriceDataframe(self): 
+
+        # Iterate through price and date list
+        data = []
+        for index, i in enumerate(self.__priceList): 
+            data.append({'date': self.__dateList[index], 'price': i})
+
+            # Create dataframe using Pandas
+            dataframe = pandas.DataFrame(data)
+            dataframe['date'] = pandas.to_datetime(dataframe['date'])
+            return dataframe

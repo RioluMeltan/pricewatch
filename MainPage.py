@@ -201,7 +201,7 @@ class MainPage:
                     print('Image access failed.')
 
                 # Initiating a watch object based on info returned
-                resultList.append(SearchedWatch(Image.open(response), i['title'], float(i['price']['value']), i['price']['currency']))
+                resultList.append(SearchedWatch(Image.open(response), i['title'], float(i['price']['currency']), i['price']['value']))
 
         except: 
 
