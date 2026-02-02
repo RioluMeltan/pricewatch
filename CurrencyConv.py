@@ -22,8 +22,7 @@ class CurrencyConv:
                 return amount / rates[start]
 
             # Otherwise convert to euro before converting to the target currency
-            euroAmount = amount / rates[start]
-            return euroAmount * rates[end]
+            return (amount / rates[start]) * rates[end]
 
         except: 
 
