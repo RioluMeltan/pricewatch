@@ -12,8 +12,7 @@ class CurrencyConv:
         try: 
 
             # Querying ECB for euro-based exchange rates
-            url = 'https://api.exchangerate.host/latest'
-            response = requests.get(url).json()
+            response = requests.get('https://api.exchangerate.host/latest').json()
             rates = response['rates']
 
             # If converting from euro to the target or vice versa
