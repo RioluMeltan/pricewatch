@@ -114,9 +114,7 @@ class MainPage:
                 print('Price could not be found.')
 
         # Final averaging
-        for i in scores: 
-            finalScore += i
-            finalScore /= len(scores)
+        finalScore += MainPage.findSum(scores) / len(scores)
 
         # Price checking (weighted 0.3)
         if (MainPage.findMax(prices) - MainPage.findMin(prices)) / (MainPage.findSum(prices) / len(prices)) <= 1: 
@@ -145,18 +143,18 @@ class MainPage:
             sia = SentimentIntensityAnalyzer(lexicon_file = 'assets/vader_lexicon.txt')
 
             # Setting original sentiment score as headline sentiment score before adding the sentiment scores of the paragraphs
-            sentiment_scores = [sia.polarity_scores(headline)['compound'] for headline in headlines]
-            sentiment_scores += [sia.polarity_scores(paragraph)['compound'] for paragraph in paragraphs]
+            sentimentScores = [sia.polarity_scores(headline)['compound'] for headline in headlines]
+            sentimentScores += [sia.polarity_scores(paragraph)['compound'] for paragraph in paragraphs]
 
             # Calculating an average sentiment for all results
-            avg_sentiment = sum(sentiment_scores) / len(sentiment_scores) if sentiment_scores else 0
+            avgSentiment = MainPage.findSum(sentimentScores) / len(sentimentScores) if sentimentScores else 0.0
 
         except: 
 
             # Default sentiment if something fails
-            avg_sentiment = 0.0
+            avgSentiment = 0.0
 
-        return avg_sentiment
+        return avgSentiment
 
     # Static method to search for watches and create a modal based on the given search terms, data is also cached if ever rereloaded
     @staticmethod
