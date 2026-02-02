@@ -16,7 +16,7 @@ class MainPage:
 
     # Static method to find minimum in a list
     @staticmethod
-    def findMin(toFind): 
+    def findMin(toFind: list) -> float: 
         smallest = toFind[0]
         for i in toFind[1:]: 
             if i < smallest:
@@ -25,7 +25,7 @@ class MainPage:
 
     # Static method to find maximum in a list
     @staticmethod
-    def findMax(toFind): 
+    def findMax(toFind: list) -> float: 
         largest = toFind[0]
         for i in toFind[1:]: 
             if i > largest:
@@ -34,7 +34,7 @@ class MainPage:
 
     # Static method to find the sum of a list
     @staticmethod
-    def findSum(toFind):
+    def findSum(toFind: list) -> float:
         total = 0
         for i in toFind:
             total += i
@@ -42,7 +42,7 @@ class MainPage:
 
     # Static bubble sort method for lists
     @staticmethod
-    def bubbleSort(toSort): 
+    def bubbleSort(toSort: list) -> list: 
 
         # Bubble sort
         for i in range(len(toSort)):
@@ -56,7 +56,7 @@ class MainPage:
 
     # Static method to calculate a reliability score for a watch query
     @staticmethod
-    def reliabilityCalc(term): 
+    def reliabilityCalc(term: str) -> int: 
 
          # Querying the API for watches
         try: 
@@ -126,7 +126,7 @@ class MainPage:
 
     # Static method to calculate the sentiment for a watch query using GoogleNews
     @staticmethod
-    def sentimentCalc(term): 
+    def sentimentCalc(term: str) -> float: 
 
         # Exception handling
         try: 
@@ -159,7 +159,7 @@ class MainPage:
     # Static method to search for watches and create a modal based on the given search terms, data is also cached if ever rereloaded
     @staticmethod
     @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True)
-    def searchWatchesModal(term): 
+    def searchWatchesModal(term: str) -> None: 
 
         # Variable initialization
         resultList = []
@@ -217,7 +217,7 @@ class MainPage:
 
     # Static method to import a list from clipboard
     @staticmethod
-    def importList(): 
+    def importList() -> None: 
 
         # Import from clipboard
         imported_content = clipboard_component.paste_component('Read Clipboard')
@@ -233,7 +233,7 @@ class MainPage:
 
     # Static method to copy the resale price to the clipboard
     @staticmethod
-    def priceToClipboard(price, currency): 
+    def priceToClipboard(price: float, currency: str) -> None: 
         
         # Pyperclip copy
         pyperclip.copy(f'$ {price} {currency}')
