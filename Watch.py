@@ -1,11 +1,12 @@
 # Import statements
 import pandas
+from PIL import Image
 
 # Dynamic class for creation of a SearchedWatch class
 class SearchedWatch: 
 
     # Init function with default none values
-    def __init__(self, icon = None, name = None, currency = None, price = None, date = None): 
+    def __init__(self, icon: Image.Image | None = None, name: str | None = None, currency: str | None = None, price: float | None = None, date: str | None = None) -> None: 
 
         # Initiates variables with default values
         self.__icon = icon
@@ -50,7 +51,7 @@ class SearchedWatch:
 class Watch(SearchedWatch): 
 
     # Init function with default None values
-    def __init__(self, dateList = None, priceList = None, priceRange = None, reliability = None, sentiment = None, finalRating = None, resalePrice = None): 
+    def __init__(self, dateList: list[str] | None = None, priceList: list[float] | None = None, priceRange: tuple[float, float] | None = None, reliability: int | None = None, sentiment: float | None = None, finalRating: int | None = None, resalePrice: float | None = None) -> None: 
         
         # Parent class initiation
         super.__init__()

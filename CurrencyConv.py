@@ -6,7 +6,7 @@ class CurrencyConv:
 
     # Static method to convert an amount of a certain currency from one to another
     @staticmethod
-    def convert(amount, start, end) -> float: 
+    def convert(amount: float, start: str, end: str) -> float: 
 
         # Exception handling
         try: 
