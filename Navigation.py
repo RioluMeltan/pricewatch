@@ -1,5 +1,8 @@
 # Import statements
 import streamlit as st
+import MainPage
+import CurrencyConv
+import MarginCalc
 from PIL import Image
 
 # Static class to access pages
