@@ -23,9 +23,9 @@ class Navigation:
         st.sidebar.image(Image.open())
         st.sidebar.text('Add Watch')
         st.sidebar.text('Enter Watch Below')
-        st.sidebar.text_input('Enter watch here')
-        st.sidebar.button('Search for Watch')
-        st.sidebar.button('Import List from Clipboard')
+        watchInput = st.sidebar.text_input('Enter watch here')
+        searchWatches = st.sidebar.button('Search for Watch')
+        importList = st.sidebar.button('Import List from Clipboard')
 
         # Column formatting for buttons
         col_1, col_2, col_3 = st.columns([1, 1, 1])
