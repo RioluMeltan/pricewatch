@@ -199,7 +199,7 @@ class MainPage:
                     print('Image access failed.')
 
                 # Initiating a watch object based on info returned
-                resultList.append(SearchedWatch(Image.open(response), i['title'], float(i['price']['currency']), i['price']['value']))
+                resultList.append(SearchedWatch(response, i['title'], float(i['price']['currency']), i['price']['value']))
 
         except: 
 
@@ -211,7 +211,7 @@ class MainPage:
         for index, watch in enumerate(resultList): 
             col = cols[index % 3]
             with col:
-                st.image(watch.getIcon(), use_column_width = True)
+                st.image(Image.open(watch.getIcon()), use_column_width = True)
                 st.markdown(watch.getName())
                 st.markdown(f'${watch.getPrice()} {watch.getCurrency()}')
 
@@ -223,13 +223,23 @@ class MainPage:
         imported_content = clipboard_component.paste_component('Read Clipboard')
 
         # Iterate through formatted content
-        for i in imported_content.split(','): 
+        for i in imported_content.splitlines(): 
 
             # Append to list
             try: 
-                st.session_state.watches.append(Watch(i.split(' ')[0], i.split(' ')[1], i.split(' ')[2], i.split(' ')[3], i.split(' ')[4], i.split(' ')[5], i.split(' ')[6]))
+                st.session_state.watches.append(Watch(i.split(', ')[0], i.split(', ')[1], i.split(', ')[2], i.split(', ')[3], i.split(', ')[4], i.split(', ')[5], i.split(', ')[6], i.split(', ')[7], i.split(', ')[8], i.split(', ')[9], i.split(', ')[10], i.split(', ')[11], i.split(', ')[12], i.split(', ')[13]))
             except: 
                 st.toast('An error occurred. Ensure that your pasted list is formatted correctly.')
+
+    @staticmethod
+    def exportList() -> None: 
+
+        # String to export
+        toEx = ''
+
+        # Convert to export format
+        for i in st.session_state.watches: 
+            toEx += i.getIcon() + ', ' + i.getName() + ', ' + i.getPrice() + ', ' + i.getCurrency() + ', ' + i.getDate() + ', ' + i.getDateList() + ', ' + i.getPriceList() + ', ' + i.getPriceRange() + ', ' + i.getReliability() + ', ' + i.getSentiment() + ', ' + i.getFinalRating() + ', ' + i.getResalePrice()
 
     # Static method to copy the resale price to the clipboard
     @staticmethod

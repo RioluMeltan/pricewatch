@@ -14,7 +14,7 @@ class Navigation:
         # Page definitions
         st.set_page_config(layout = 'wide')
 
-        # Initializing persistent storage
+        # Initializing persistent storage for watches
         if 'watches' not in st.session_state: 
             st.session_state.watches = []
 
@@ -37,3 +37,9 @@ class Navigation:
 
         with col_3: 
             exportListButton = st.button('Export Watchlist')
+
+        if currencyConvButton: 
+            st.session_state.page = 'CurrencyConv'
+
+        if marginCalcButton: 
+            st.session_state.page = 'MarginCalc'
