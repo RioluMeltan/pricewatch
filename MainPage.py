@@ -241,6 +241,32 @@ class MainPage:
         for i in st.session_state.watches: 
             toEx += i.getIcon() + ', ' + i.getName() + ', ' + i.getPrice() + ', ' + i.getCurrency() + ', ' + i.getDate() + ', ' + i.getDateList() + ', ' + i.getPriceList() + ', ' + i.getPriceRange() + ', ' + i.getReliability() + ', ' + i.getSentiment() + ', ' + i.getFinalRating() + ', ' + i.getResalePrice()
 
+    @staticmethod
+    def listRepeater() -> None: 
+
+        # Iterate through watches
+        for watch in st.session_state.watches: 
+
+            # Columned container for consistent box sizes
+            with st.container(height = 300): 
+                col_1, col_2, col_3 = st.columns([3, 1, 1])
+
+                # Text-based info
+                with col_1: 
+                    st.write(f'Market Price Range: ${watch.getPriceRange()[0]} {watch.getCurrency()} - ${watch.getPriceRange()[0]} {watch.getCurrency()}')
+                    st.write(f'Reliability Score: {watch.getReliability()}/100')
+                    st.write(f'Watch Sentiment: {watch.getSentiment()}')
+                    st.write(f'Final Resale Rating: {watch.getFinalRating}/100')
+                    st.write('DO NOT FORGET THE GRAPH')
+
+                # Resale price and copy to clipboard
+                with col_2: 
+                    st.write('DO NOT FORGET TO DO THIS')
+
+                # Close button
+                with col_3: 
+                    st.write('AND THIS')
+
     # Static method to copy the resale price to the clipboard
     @staticmethod
     def priceToClipboard(price: float, currency: str) -> None: 
