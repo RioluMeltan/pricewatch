@@ -38,8 +38,18 @@ class Navigation:
         with col_3: 
             exportListButton = st.button('Export Watchlist')
 
+        # Button 
         if currencyConvButton: 
             st.session_state.page = 'CurrencyConv'
 
         if marginCalcButton: 
             st.session_state.page = 'MarginCalc'
+
+        if exportListButton: 
+            MainPage.exportList()
+
+        if searchWatches and watchInput.value: 
+            MainPage.watchSearchModal(watchInput.value)
+
+        if importList: 
+            MainPage.importList()

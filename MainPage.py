@@ -239,7 +239,10 @@ class MainPage:
 
         # Convert to export format
         for i in st.session_state.watches: 
-            toEx += i.getIcon() + ', ' + i.getName() + ', ' + i.getPrice() + ', ' + i.getCurrency() + ', ' + i.getDate() + ', ' + i.getDateList() + ', ' + i.getPriceList() + ', ' + i.getPriceRange() + ', ' + i.getReliability() + ', ' + i.getSentiment() + ', ' + i.getFinalRating() + ', ' + i.getResalePrice()
+            toEx += str(i.getIcon()) + ', ' + str(i.getName()) + ', ' + str(i.getPrice()) + ', ' + str(i.getCurrency()) + ', ' + str(i.getDate()) + ', ' + str(i.getDateList()) + ', ' + str(i.getPriceList()) + ', ' + str(i.getPriceRange()) + ', ' + str(i.getReliability()) + ', ' + str(i.getSentiment()) + ', ' + str(i.getFinalRating()) + ', ' + str(i.getResalePrice())
+
+        # Exporting to clipboard
+        pyperclip.copy(toEx)
 
     @staticmethod
     def listRepeater() -> None: 
@@ -249,7 +252,7 @@ class MainPage:
 
             # Columned container for consistent box sizes
             with st.container(height = 300): 
-                col_1, col_2, col_3 = st.columns([3, 1, 1])
+                col_1, col_2, col_3 = st.columns([6, 3, 1])
 
                 # Text-based info
                 with col_1: 
