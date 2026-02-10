@@ -212,6 +212,8 @@ class MainPage:
             # Variable definition
             toAdd = Watch()
             sumPrices = 0.0
+            dateList = []
+            priceList = []
 
             # Basic setters
             toAdd.setIcon(resultList[0].getIcon())
@@ -222,6 +224,7 @@ class MainPage:
             for watch in resultList: 
                 sumPrices += watch.getPrice()
                 toAdd.setPrice(sumPrices / len(sumPrices))
+
 
         # Displaying results using columns and enumerated list to cycle
         cols = st.columns(3)
