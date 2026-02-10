@@ -211,10 +211,16 @@ class MainPage:
 
             # Variable definition
             toAdd = Watch()
+            sumPrices = 0.0
+
+            # Basic setters
+            toAdd.setIcon(resultList[0].getIcon())
+            toAdd.setName(resultList[0].getName())
             
             # Iterate through and calculate each value
             for watch in resultList: 
-                
+                sumPrices += watch.getPrice()
+                toAdd.setPrice(sumPrices / len(sumPrices))
 
         # Displaying results using columns and enumerated list to cycle
         cols = st.columns(3)
