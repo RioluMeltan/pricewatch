@@ -207,7 +207,14 @@ class MainPage:
             print('Iteration failed.')
 
         # Add to watchlist button
-        if st.button('')
+        if st.button('Add to Watchlist'): 
+
+            # Variable definition
+            toAdd = Watch()
+            
+            # Iterate through and calculate each value
+            for watch in resultList: 
+                
 
         # Displaying results using columns and enumerated list to cycle
         cols = st.columns(3)
