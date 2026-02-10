@@ -30,26 +30,19 @@ class Navigation:
         # Column formatting for buttons
         col_1, col_2, col_3 = st.columns([1, 1, 1])
         with col_1: 
-            currencyConvButton = st.button('Currency Converter')
+            if st.button('Currency Converter'): 
+                st.session_state.page = 'CurrencyConv'
 
         with col_2: 
-            marginCalcButton = st.button('Margin Calculator')
+            if st.button('Margin Calculator'): 
+                st.session_state.page = 'MarginCalc'
 
         with col_3: 
-            exportListButton = st.button('Export Watchlist')
-
-        # Button 
-        if currencyConvButton: 
-            st.session_state.page = 'CurrencyConv'
-
-        if marginCalcButton: 
-            st.session_state.page = 'MarginCalc'
-
-        if exportListButton: 
-            MainPage.exportList()
+            if st.button('Export Watchlist'): 
+                MainPage.exportList()
 
         if searchWatches and watchInput.value: 
-            MainPage.watchSearchModal(watchInput.value)
+            MainPage.searchWatchesModal(watchInput.value)
 
         if importList: 
             MainPage.importList()
