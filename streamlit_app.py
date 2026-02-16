@@ -1,6 +1,6 @@
 # Import statements
 import streamlit as st
-import Navigation
+from Navigation import Navigation
 
 # Initializing page navigation
 if 'page' not in st.session_state: 
