@@ -42,7 +42,7 @@ class Navigation:
             if st.button('Export Watchlist'): 
                 MainPage.exportList()
 
-        if searchWatches and watchInput.value: 
+        if searchWatches and watchInput: 
             MainPage.searchWatchesModal(watchInput.value)
 
         if importList: 
