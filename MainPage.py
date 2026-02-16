@@ -199,12 +199,12 @@ class MainPage:
                     st.error('Image access failed.')
 
                 # Initiating a watch object based on info returned
-                resultList.append(SearchedWatch(response, i['title'], float(i['price']['currency']), i['price']['value']))
+                resultList.append(SearchedWatch(response, i['title'], i['price']['currency'], float(i['price']['value'])))
 
-        except Exception as ex: 
+        except: 
 
             # Exception handling
-            st.error(ex)
+            st.error('Iteration failed.')
 
         # Add to watchlist button
         if st.button('Add to Watchlist'): 
