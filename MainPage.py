@@ -241,6 +241,9 @@ class MainPage:
                 toAdd.setFinalRating(50 * toAdd.getReliability() + 30 * toAdd.getSentiment())
             toAdd.setResalePrice((toAdd.getPriceRange()[0] + toAdd.getPriceRange()[1]) / 2)
 
+            # Appending to global variable
+            st.session_state.watches.append(toAdd)
+
         # Displaying results using columns and enumerated list to cycle
         cols = st.columns(3)
         for index, watch in enumerate(resultList): 
