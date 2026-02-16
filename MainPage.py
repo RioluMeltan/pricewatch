@@ -158,7 +158,7 @@ class MainPage:
 
     # Static method to search for watches and create a modal based on the given search terms
     @staticmethod
-    @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True)
+    @st.dialog(title = 'Results for Your Search', width = 'large', dismissible = True, on_dismiss = 'rerun')
     def searchWatchesModal(term: str) -> None: 
 
         # Variable initialization
