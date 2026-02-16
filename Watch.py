@@ -54,7 +54,7 @@ class Watch(SearchedWatch):
     def __init__(self, dateList: list[str] | None = None, priceList: list[float] | None = None, priceRange: tuple[float, float] | None = None, reliability: int | None = None, sentiment: float | None = None, finalRating: int | None = None, resalePrice: float | None = None) -> None: 
         
         # Parent class initiation
-        super.__init__()
+        super().__init__()
 
         # Initiates variables with default values
         self.__dateList = dateList or []
