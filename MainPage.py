@@ -279,6 +279,7 @@ class MainPage:
         # Exporting to clipboard
         pyperclip.copy(toEx)
 
+    # Static method to fully display the watchlist
     @staticmethod
     def listRepeater() -> None: 
 

@@ -46,3 +46,5 @@ class Navigation:
 
         if importList: 
             MainPage.importList()
+
+        MainPage.listRepeater()
