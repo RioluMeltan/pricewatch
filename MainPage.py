@@ -223,7 +223,7 @@ class MainPage:
             # Iterate through and calculate each value
             for watch in resultList: 
                 sumPrices += watch.getPrice()
-                toAdd.setPrice(sumPrices / len(sumPrices))
+                toAdd.setPrice(sumPrices / len(resultList))
                 dateList.append(watch.getDate())
                 priceList.append(watch.getPrice())
 
