@@ -27,5 +27,5 @@ class CurrencyConv:
         except: 
 
             # Returning no price if conversion failed
-            print('Currency conversion failed.')
+            st.error('Currency conversion failed.')
             return 0.0

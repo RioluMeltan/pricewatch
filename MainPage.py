@@ -76,7 +76,7 @@ class MainPage:
         except: 
 
             # Exception handling
-            print('Request unsuccessful. Try again later.')
+            st.error('Request unsuccessful. Try again later.')
     
         # Variable initation
         scores = []
@@ -96,7 +96,7 @@ class MainPage:
             try: 
                 scores[index] += float(i['seller']['feedbackPercentage']) * 0.35
             except: 
-                print('Seller info could not be found.')
+                st.error('Seller info could not be found.')
 
             # Listing type check (weighted 0.2)
             try: 
@@ -105,13 +105,13 @@ class MainPage:
                 elif i['buyingOptions'][0] == 'AUCTION': 
                     scores[index] += 0.1
             except:
-                print('Pricing info could not be found.')
+                st.error('Pricing info could not be found.')
             
             # Append price to prices
             try: 
                 prices.append(float(i['price']['value']))
             except: 
-                print('Price could not be found.')
+                st.error('Price could not be found.')
 
         # Final averaging
         finalScore += MainPage.findSum(scores) / len(scores)
@@ -183,7 +183,7 @@ class MainPage:
         except: 
 
             # Exception handling
-            print('Request unsuccessful. Try again later.')
+            st.error('Request unsuccessful. Try again later.')
 
         # Exception handling
         try: 
@@ -196,7 +196,7 @@ class MainPage:
                     response = io.BytesIO(requests.get(i['image']['imageUrl']).content)
                 except: 
                     response = 'assets/watch_not_found.png'
-                    print('Image access failed.')
+                    st.error('Image access failed.')
 
                 # Initiating a watch object based on info returned
                 resultList.append(SearchedWatch(response, i['title'], float(i['price']['currency']), i['price']['value']))
@@ -204,7 +204,7 @@ class MainPage:
         except: 
 
             # Exception handling
-            print('Iteration failed.')
+            st.error('Iteration failed.')
 
         # Add to watchlist button
         if st.button('Add to Watchlist'): 
