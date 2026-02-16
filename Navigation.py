@@ -43,7 +43,7 @@ class Navigation:
                 MainPage.exportList()
 
         if searchWatches and watchInput: 
-            MainPage.searchWatchesModal(watchInput.value)
+            MainPage.searchWatchesModal(watchInput)
 
         if importList: 
             MainPage.importList()
