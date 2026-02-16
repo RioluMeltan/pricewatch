@@ -201,10 +201,10 @@ class MainPage:
                 # Initiating a watch object based on info returned
                 resultList.append(SearchedWatch(response, i['title'], float(i['price']['currency']), i['price']['value']))
 
-        except: 
+        except Exception as ex: 
 
             # Exception handling
-            st.error('Iteration failed.')
+            st.error(ex)
 
         # Add to watchlist button
         if st.button('Add to Watchlist'): 
