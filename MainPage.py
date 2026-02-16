@@ -236,9 +236,9 @@ class MainPage:
 
             # Final resell rating and price calculation
             if (toAdd.getPriceRange()[1] - toAdd.getPriceRange()[0]) / toAdd.getPrice() <= 1: 
-                toAdd.setFinalRating(50 * toAdd.getReliability() + 30 * toAdd.getSentiment() + 20 * (1 - ((toAdd.getPriceRange()[1] - toAdd.getPriceRange()[0]) / toAdd.getPrice())))
+                toAdd.setFinalRating(0.5 * toAdd.getReliability() + 30 * toAdd.getSentiment() + 20 * (1 - ((toAdd.getPriceRange()[1] - toAdd.getPriceRange()[0]) / toAdd.getPrice())))
             else: 
-                toAdd.setFinalRating(50 * toAdd.getReliability() + 30 * toAdd.getSentiment())
+                toAdd.setFinalRating(0.5 * toAdd.getReliability() + 30 * toAdd.getSentiment())
             toAdd.setResalePrice((toAdd.getPriceRange()[0] + toAdd.getPriceRange()[1]) / 2)
 
             # Appending to global variable
