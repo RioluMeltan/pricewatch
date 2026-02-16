@@ -295,7 +295,7 @@ class MainPage:
 
                 # Text-based info
                 with col_1: 
-                    st.write(f'Market Price Range: ${watch.getPriceRange()[0]} {watch.getCurrency()} - ${watch.getPriceRange()[0]} {watch.getCurrency()}')
+                    st.write(f'Market Price Range: ${watch.getPriceRange()[0]} {watch.getCurrency()} - ${watch.getPriceRange()[1]} {watch.getCurrency()}')
                     st.write(f'Reliability Score: {watch.getReliability()}/100')
                     st.write(f'Watch Sentiment: {watch.getSentiment()}')
                     st.write(f'Final Resale Rating: {watch.getFinalRating()}/100')
