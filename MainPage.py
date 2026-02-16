@@ -94,7 +94,7 @@ class MainPage:
 
             # Reputation check (weighted 0.35)
             try: 
-                scores[index] += float(i['seller']['feedbackPercentage']) * 0.35
+                scores[index] += float(i['seller']['feedbackPercentage']) * 0.0035
             except: 
                 st.error('Seller info could not be found.')
 
@@ -298,7 +298,7 @@ class MainPage:
                     st.write(f'Market Price Range: ${watch.getPriceRange()[0]} {watch.getCurrency()} - ${watch.getPriceRange()[0]} {watch.getCurrency()}')
                     st.write(f'Reliability Score: {watch.getReliability()}/100')
                     st.write(f'Watch Sentiment: {watch.getSentiment()}')
-                    st.write(f'Final Resale Rating: {watch.getFinalRating}/100')
+                    st.write(f'Final Resale Rating: {watch.getFinalRating()}/100')
                     st.write('DO NOT FORGET THE GRAPH')
 
                 # Resale price and copy to clipboard
