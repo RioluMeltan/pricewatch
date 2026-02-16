@@ -21,7 +21,7 @@ class Navigation:
 
         # UI elements
         st.title('PriceWatch: A Price Comparison Tool for Fair Resale Valuation of Luxury Watches')
-        st.sidebar.image(Image.open())
+        # st.sidebar.image(Image.open('')) REMEMBER TO ADD A LOGO LATER
         st.sidebar.text('Add Watch')
         st.sidebar.text('Enter Watch Below')
         watchInput = st.sidebar.text_input('Enter watch here')
