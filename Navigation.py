@@ -8,7 +8,8 @@ from PIL import Image
 # Static class to access pages
 class Navigation: 
 
-    # Main page
+    # Main page static method
+    @staticmethod
     def mainPage(): 
 
         # Page definitions
