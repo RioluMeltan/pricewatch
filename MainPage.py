@@ -224,7 +224,22 @@ class MainPage:
             for watch in resultList: 
                 sumPrices += watch.getPrice()
                 toAdd.setPrice(sumPrices / len(sumPrices))
+                dateList.append(watch.getDate())
+                priceList.append(watch.getPrice())
 
+            # Final setters
+            toAdd.setDateList(dateList)
+            toAdd.setPriceList(priceList)
+            toAdd.setPriceRange((MainPage.findMin(priceList), MainPage.findMax(priceList)))
+            toAdd.setReliability(MainPage.reliabilityCalc(term))
+            toAdd.setSentiment(MainPage.sentimentCalc(term))
+
+            # Final resell rating and price calculation
+            if (toAdd.getPriceRange()[1] - toAdd.getPriceRange()[0]) / toAdd.getPrice() <= 1: 
+                toAdd.setFinalRating(50 * toAdd.getReliability() + 30 * toAdd.getSentiment() + 20 * (1 - ((toAdd.getPriceRange()[1] - toAdd.getPriceRange()[0]) / toAdd.getPrice())))
+            else: 
+                toAdd.setFinalRating(50 * toAdd.getReliability() + 30 * toAdd.getSentiment())
+            toAdd.setResalePrice((toAdd.getPriceRange()[0] + toAdd.getPriceRange()[1]) / 2)
 
         # Displaying results using columns and enumerated list to cycle
         cols = st.columns(3)
