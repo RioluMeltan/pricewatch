@@ -306,7 +306,7 @@ class MainPage:
 
                 # Text-based info
                 with col_2: 
-                    st.markdown(f'**"{watch.getName()}"**')
+                    st.markdown(f'<h5>"{watch.getName()}"</h5>')
                     st.markdown(f'**Market Price Range:** \\${watch.getPriceRange()[0]} {watch.getCurrency()} - \\${watch.getPriceRange()[1]} {watch.getCurrency()}')
                     st.markdown(f'**Reliability Score:** {watch.getReliability()}/100')
                     st.markdown(f'**Watch Sentiment:** {watch.getSentiment()}')
@@ -318,7 +318,7 @@ class MainPage:
 
                 # Resale price and copy to clipboard
                 with col_3: 
-                    st.markdown(f'<h4>Recommended Resale Price:</h4>' f'<h2 style = "color:green;">${watch.getResalePrice():,.2f} {watch.getCurrency()}</h2>', unsafe_allow_html = True)
+                    st.markdown(f'<h5>Recommended Resale Price:</h5>' f'<h4 style = "color:green;">${watch.getResalePrice():,.2f} {watch.getCurrency()}</h4>', unsafe_allow_html = True)
                     if st.button('Copy Price to Clipboard'): 
                         MainPage.priceToClipboard(watch.getResalePrice(), watch.getCurrency())
 
