@@ -128,4 +128,6 @@ class Watch(SearchedWatch):
             # Create dataframe using Pandas
             dataframe = pandas.DataFrame(data)
             dataframe['date'] = pandas.to_datetime(dataframe['date'])
-            return dataframe
+
+        # Return statement
+        return dataframe

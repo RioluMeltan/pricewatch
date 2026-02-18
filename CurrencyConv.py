@@ -1,4 +1,5 @@
 # Import statements
+import streamlit as st
 import requests
 
 # Static class to represent the currency conversion page
