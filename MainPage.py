@@ -327,3 +327,4 @@ class MainPage:
                 with col_4: 
                     if st.button('X'): 
                         st.session_state.watches.pop(index)
+                        st.rerun()
