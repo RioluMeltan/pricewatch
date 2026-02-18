@@ -217,7 +217,7 @@ class MainPage:
 
             # Basic setters
             toAdd.setIcon(resultList[0].getIcon())
-            toAdd.setName(term)
+            toAdd.setName(resultList[0].getName())
             toAdd.setCurrency(resultList[0].getCurrency())
             
             # Iterate through and calculate each value
