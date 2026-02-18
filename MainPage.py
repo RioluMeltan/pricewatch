@@ -306,7 +306,7 @@ class MainPage:
 
                 # Text-based info
                 with col_2: 
-                    st.markdown(f'<h4>"{watch.getName()}"</h4>')
+                    st.markdown(f'<h4>{watch.getName()}</h4>')
                     st.markdown(f'**Market Price Range:** \\${watch.getPriceRange()[0]} {watch.getCurrency()} - \\${watch.getPriceRange()[1]} {watch.getCurrency()}')
                     st.markdown(f'**Reliability Score:** {watch.getReliability()}/100')
                     st.markdown(f'**Watch Sentiment:** {watch.getSentiment()}')
