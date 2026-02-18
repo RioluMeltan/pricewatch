@@ -318,17 +318,13 @@ class MainPage:
 
                 # Resale price and copy to clipboard
                 with col_3: 
-                    st.markdown('<div style = "text-align: center;">', unsafe_allow_html = True)
                     st.markdown(f'<h4>Recommended Resale Price:</h4>', unsafe_allow_html = True)
                     st.markdown(f'<h3 style = "color:green;">${watch.getResalePrice():,.2f} {watch.getCurrency()}</h3></div>', unsafe_allow_html = True)
                     if st.button('Copy Price to Clipboard'): 
                         MainPage.priceToClipboard(watch.getResalePrice(), watch.getCurrency())
-                    st.markdown('</div>', unsafe_allow_html = True)
 
                 # Close button
                 with col_4: 
-                    st.markdown('<div style = "text-align: center;">', unsafe_allow_html = True)
-                    if st.button('X'): 
+                    if st.button('Remove from Watchlist'): 
                         st.session_state.watches.pop(index)
                         st.rerun()
-                    st.markdown('</div>', unsafe_allow_html = True)
