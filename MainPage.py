@@ -217,7 +217,7 @@ class MainPage:
 
             # Basic setters
             toAdd.setIcon(resultList[0].getIcon())
-            toAdd.setName(resultList[0].getName())
+            toAdd.setName(term)
             toAdd.setCurrency(resultList[0].getCurrency())
             
             # Iterate through and calculate each value
@@ -299,7 +299,7 @@ class MainPage:
 
                 # Text-based info
                 with col_2: 
-                    st.title(watch.getName())
+                    st.markdown(f'**"watch.getName()"**')
                     st.markdown(f'**Market Price Range:** ${watch.getPriceRange()[0]} {watch.getCurrency()} - ${watch.getPriceRange()[1]} {watch.getCurrency()}')
                     st.markdown(f'**Reliability Score:** {watch.getReliability()}/100')
                     st.markdown(f'**Watch Sentiment:** {watch.getSentiment()}')
