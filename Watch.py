@@ -128,6 +128,7 @@ class Watch(SearchedWatch):
 
         # Create dataframe using Pandas
         dataframe = pandas.DataFrame(data)
+        dataframe.set_index('date', inplace = True)
 
         # Return statement
         return dataframe
