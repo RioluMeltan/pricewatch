@@ -299,7 +299,11 @@ class MainPage:
                     st.write(f'Reliability Score: {watch.getReliability()}/100')
                     st.write(f'Watch Sentiment: {watch.getSentiment()}')
                     st.write(f'Final Resale Rating: {watch.getFinalRating()}/100')
-                    st.write('DO NOT FORGET THE GRAPH')
+                    st.button('Display Price Graph')
+
+                    # Price graph modal
+                    with st.popover(f'Price Graph for "{watch.getName()}"'): 
+                        st.line_chart(watch.returnPriceDataframe())
 
                 # Resale price and copy to clipboard
                 with col_2: 
