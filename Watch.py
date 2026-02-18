@@ -121,13 +121,13 @@ class Watch(SearchedWatch):
     def returnPriceDataframe(self): 
 
         # Iterate through price and date list
-        data = []
+        data = {'date': [], 'price': []}
         for index, i in enumerate(self.__priceList): 
-            data.append({'date': self.__dateList[index], 'price': i})
+            data['date'].append(pandas.to_datetime(self.__dateList[index]))
+            data['price'].append(i)
 
-            # Create dataframe using Pandas
-            dataframe = pandas.DataFrame(data)
-            dataframe['date'] = pandas.to_datetime(dataframe['date'])
+        # Create dataframe using Pandas
+        dataframe = pandas.DataFrame(data)
 
         # Return statement
         return dataframe
