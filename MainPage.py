@@ -302,7 +302,7 @@ class MainPage:
                     
                     # Price graph modal
                     with st.popover(f'Display Price Graph'): 
-                        st.line_chart(watch.returnPriceDataframe())
+                        st.line_chart(watch.returnPriceDataframe(), x = 'Date', y = 'Price')
 
                 # Resale price and copy to clipboard
                 with col_2: 
