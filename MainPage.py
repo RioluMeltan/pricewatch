@@ -291,7 +291,7 @@ class MainPage:
 
             # Columned container for consistent box sizes
             with st.container(height = 300): 
-                col_1, col_2, col_3, col_4 = st.columns([1, 5, 3, 1])
+                col_1, col_2, col_3, col_4 = st.columns([3, 5, 3, 1])
 
                 # Icon displaying
                 with col_1: 
