@@ -199,7 +199,7 @@ class MainPage:
                     st.error('Image access failed.')
 
                 # Initiating a watch object based on info returned
-                resultList.append(SearchedWatch(response, i['title'], i['price']['currency'], float(i['price']['value'])))
+                resultList.append(SearchedWatch(response, i['title'], i['price']['currency'], float(i['price']['value'])), i['itemCreationDate'])
 
         except: 
 
@@ -299,11 +299,11 @@ class MainPage:
                     st.write(f'Reliability Score: {watch.getReliability()}/100')
                     st.write(f'Watch Sentiment: {watch.getSentiment()}')
                     st.write(f'Final Resale Rating: {watch.getFinalRating()}/100')
-                    st.button('Display Price Graph')
-
+                    
                     # Price graph modal
-                    with st.popover(f'Price Graph for "{watch.getName()}"'): 
-                        st.line_chart(watch.returnPriceDataframe())
+                    if st.button('Display Price Graph'): 
+                        with st.popover(f'Price Graph for "{watch.getName()}"'): 
+                            st.line_chart(watch.returnPriceDataframe())
 
                 # Resale price and copy to clipboard
                 with col_2: 
