@@ -291,10 +291,14 @@ class MainPage:
 
             # Columned container for consistent box sizes
             with st.container(height = 300): 
-                col_1, col_2, col_3 = st.columns([6, 3, 1])
+                col_1, col_2, col_3, col_4 = st.columns([1, 5, 3, 1])
+
+                # Icon displaying
+                with col_1: 
+                    st.image(Image.open(watch.getIcon()))
 
                 # Text-based info
-                with col_1: 
+                with col_2: 
                     st.write(f'Market Price Range: ${watch.getPriceRange()[0]} {watch.getCurrency()} - ${watch.getPriceRange()[1]} {watch.getCurrency()}')
                     st.write(f'Reliability Score: {watch.getReliability()}/100')
                     st.write(f'Watch Sentiment: {watch.getSentiment()}')
@@ -305,11 +309,11 @@ class MainPage:
                         st.line_chart(watch.returnPriceDataframe()['price'])
 
                 # Resale price and copy to clipboard
-                with col_2: 
+                with col_3: 
                     st.write('DO NOT FORGET TO DO THIS')
 
                 # Close button
-                with col_3: 
+                with col_4: 
                     st.write('AND THIS')
 
     # Static method to copy the resale price to the clipboard
