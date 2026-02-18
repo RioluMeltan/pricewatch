@@ -297,7 +297,7 @@ class MainPage:
         for index, watch in enumerate(st.session_state.watches): 
 
             # Columned container for consistent box sizes
-            with st.container(height = 300): 
+            with st.container(height = 310): 
                 col_1, col_2, col_3, col_4 = st.columns([3, 4, 3, 2])
 
                 # Icon displaying
@@ -320,11 +320,11 @@ class MainPage:
                 with col_3: 
                     st.markdown(f'<h4>Recommended Resale Price:</h4>', unsafe_allow_html = True)
                     st.markdown(f'<h3 style = "color:green;">${watch.getResalePrice():,.2f} {watch.getCurrency()}</h3></div>', unsafe_allow_html = True)
-                    if st.button('Copy Price to Clipboard'): 
+                    if st.button('Copy Price to Clipboard', key = index): 
                         MainPage.priceToClipboard(watch.getResalePrice(), watch.getCurrency())
 
                 # Close button
                 with col_4: 
-                    if st.button('Remove from Watchlist'): 
+                    if st.button('Remove from Watchlist', key = index): 
                         st.session_state.watches.pop(index)
                         st.rerun()
