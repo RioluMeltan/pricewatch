@@ -282,12 +282,19 @@ class MainPage:
         # Exporting to clipboard
         pyperclip.copy(toEx)
 
+    # Static method to copy the resale price to the clipboard
+    @staticmethod
+    def priceToClipboard(price: float, currency: str) -> None: 
+        
+        # Pyperclip copy
+        pyperclip.copy(f'$ {price} {currency}')
+
     # Static method to fully display the watchlist
     @staticmethod
     def listRepeater() -> None: 
 
         # Iterate through watches
-        for watch in st.session_state.watches: 
+        for index, watch in enumerate(st.session_state.watches): 
 
             # Columned container for consistent box sizes
             with st.container(height = 300): 
@@ -311,15 +318,11 @@ class MainPage:
 
                 # Resale price and copy to clipboard
                 with col_3: 
-                    st.write('DO NOT FORGET TO DO THIS')
+                    st.markdown(f'<h4>Recommended Resale Price:</h4>' f'<h2 style = "color:green;">${watch.getResalePrice():,.2f} {watch.getCurrency()}</h2>', unsafe_allow_html = True)
+                    if st.button('Copy Price to Clipboard'): 
+                        MainPage.priceToClipboard(watch.getResalePrice(), watch.getCurrency())
 
                 # Close button
                 with col_4: 
-                    st.write('AND THIS')
-
-    # Static method to copy the resale price to the clipboard
-    @staticmethod
-    def priceToClipboard(price: float, currency: str) -> None: 
-        
-        # Pyperclip copy
-        pyperclip.copy(f'$ {price} {currency}')
+                    if st.button('X'): 
+                        st.session_state.watches.pop(index)
