@@ -10,7 +10,7 @@ class Navigation:
 
     # Main page static method
     @staticmethod
-    def mainPage(): 
+    def mainPage() -> None: 
 
         # Page definitions
         st.set_page_config(layout = 'wide')
@@ -49,3 +49,17 @@ class Navigation:
             MainPage.importList()
 
         MainPage.listRepeater()
+
+    # Currency converter page static method
+    @staticmethod
+    def currencyConv() -> None: 
+
+        # Page definitions
+        st.set_page_config(layout = 'wide')
+        
+    # Margin calculator page static method
+    @staticmethod
+    def currencyConv() -> None: 
+
+        # Page definitions
+        st.set_page_config(layout = 'wide')
