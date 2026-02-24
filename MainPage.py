@@ -49,7 +49,7 @@ class MainPage:
             for j in range(0, len(toSort) - i - 1):
 
                 # Compare elements that are next to each other
-                if toSort[j].price > toSort[j + 1].price:
+                if toSort[j].getPrice() > toSort[j + 1].getPrice():
                     toSort[j], toSort[j + 1] = toSort[j + 1], toSort[j]
 
         return toSort
