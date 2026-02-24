@@ -246,7 +246,7 @@ class MainPage:
 
         # Displaying results using columns and enumerated list to cycle
         cols = st.columns(3)
-        for index, watch in enumerate(resultList): 
+        for index, watch in enumerate(MainPage.bubbleSort(resultList)): 
             col = cols[index % 3]
             with col:
                 st.image(Image.open(watch.getIcon()), use_column_width = True)
