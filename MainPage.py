@@ -277,7 +277,7 @@ class MainPage:
 
         # Convert to export format
         for i in st.session_state.watches: 
-            toEx += str(i.getIcon()) + ', ' + str(i.getName()) + ', ' + str(i.getPrice()) + ', ' + str(i.getCurrency()) + ', ' + str(i.getDate()) + ', ' + str(i.getDateList()) + ', ' + str(i.getPriceList()) + ', ' + str(i.getPriceRange()) + ', ' + str(i.getReliability()) + ', ' + str(i.getSentiment()) + ', ' + str(i.getFinalRating()) + ', ' + str(i.getResalePrice())
+            toEx += str(i.getIcon()) + ', ' + str(i.getName()) + ', ' + str(i.getPrice()) + ', ' + str(i.getCurrency()) + ', ' + str(i.getDate()) + ', ' + str(i.getDateList()) + ', ' + str(i.getPriceList()) + ', ' + str(i.getPriceRange()) + ', ' + str(i.getReliability()) + ', ' + str(i.getSentiment()) + ', ' + str(i.getFinalRating()) + ', ' + str(i.getResalePrice()) + '\n'
 
         # Exporting to clipboard
         pyperclip.copy(toEx)
