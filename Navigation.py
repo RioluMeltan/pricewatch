@@ -62,10 +62,24 @@ class Navigation:
         
     # Margin calculator page static method
     @staticmethod
-    def currencyConv() -> None: 
+    def marginCalc() -> None: 
 
         # Page definitions
         st.set_page_config(layout = 'wide')
 
         # UI elements
         st.title('Margin Calculator')
+        
+        # Inputs
+        price = st.number_input('Price', min_value = 0.0, step = 0.01)
+        desired_margin = st.number_input('Desired Profit Margin (%)', min_value = 0.0, step = 0.1)
+
+        # Button calculation
+        if st.button('Calculate'): 
+            st.write(f'Revenue: ${MarginCalc.marginCalc(price, desired_margin)}')
+            st.write(f'Profit: ${MarginCalc.marginCalc(price, desired_margin) - price}')
+
+        # Return button
+        if st.button('Back'): 
+            st.session_state.page = 'MainPage'
+            st.rerun()
