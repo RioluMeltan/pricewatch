@@ -33,10 +33,12 @@ class Navigation:
         with col_1: 
             if st.button('Currency Converter'): 
                 st.session_state.page = 'CurrencyConv'
+                st.rerun()
 
         with col_2: 
             if st.button('Margin Calculator'): 
                 st.session_state.page = 'MarginCalc'
+                st.rerun()
 
         with col_3: 
             if st.button('Export Watchlist'): 
