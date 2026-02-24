@@ -56,6 +56,9 @@ class Navigation:
 
         # Page definitions
         st.set_page_config(layout = 'wide')
+
+        # UI elements
+        st.title('Currency Converter')
         
     # Margin calculator page static method
     @staticmethod
@@ -63,3 +66,6 @@ class Navigation:
 
         # Page definitions
         st.set_page_config(layout = 'wide')
+
+        # UI elements
+        st.title('Margin Calculator')
