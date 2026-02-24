@@ -1,14 +1,14 @@
 # Static class for calculating the profit margin
 class MarginCalc: 
 
-    # Static method to calculate a profit margin based on cost and sell price
+    # Static method to calculate a profit margin based on price and desired margin
     @staticmethod
-    def profitMargin(cost: float, sell: float) -> float: 
+    def profitMargin(cost: float, margin: float) -> float: 
         
         # Negative value handling
-        if sell <= 0: 
+        if margin <= 0: 
             return 0.0
 
         # Calculating profit margin
-        margin = ((sell - cost) / sell) * 100
-        return round(margin, 2)
+        price = cost * (1 + margin / 100)
+        return round(price, 2)
