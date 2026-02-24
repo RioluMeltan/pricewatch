@@ -73,8 +73,11 @@ class Navigation:
         st.title('Margin Calculator')
         
         # Inputs
-        price = st.number_input('Price', min_value = 0.0, step = 0.01)
-        desired_margin = st.number_input('Desired Profit Margin (%)', min_value = 0.0, step = 0.1)
+        col_1, col_2 = st.columns([1, 1])
+        with col_1: 
+            price = st.number_input('Price', min_value = 0.0, step = 0.01)
+        with col_2: 
+            desired_margin = st.number_input('Desired Profit Margin (%)', min_value = 0.0, step = 0.1)
 
         # Button calculation
         if st.button('Calculate'): 
