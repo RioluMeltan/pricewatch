@@ -78,8 +78,8 @@ class Navigation:
 
         # Button calculation
         if st.button('Calculate'): 
-            st.write(f'Revenue: ${MarginCalc.marginCalc(price, desired_margin)}')
-            st.write(f'Profit: ${MarginCalc.marginCalc(price, desired_margin) - price}')
+            st.write(f'Revenue: ${MarginCalc.profitMargin(price, desired_margin)}')
+            st.write(f'Profit: ${MarginCalc.profitMargin(price, desired_margin) - price}')
 
         # Return button
         if st.button('Back'): 
