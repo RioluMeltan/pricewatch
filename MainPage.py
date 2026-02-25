@@ -261,12 +261,12 @@ class MainPage:
         # Text pasting input
         toCheck = st.sidebar.text_area('Paste watchlist here: ')
         
+
+        st.write('Raw pasted text: ', toCheck)
+        st.write('Split lines: ', toCheck.splitlines())
+        
         # Iterate through formatted content if an input is detected
         if toCheck.strip(): 
-
-            st.write('Raw pasted text: ', toCheck)
-            st.write('Split lines: ', toCheck.splitlines())
-
             for i in toCheck.splitlines(): 
     
                 # Append to list
