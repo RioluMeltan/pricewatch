@@ -61,6 +61,24 @@ class Navigation:
 
         # UI elements
         st.title('Currency Converter')
+
+        # Inputs
+        col_1, col_2, col_3 = st.columns([3, 1, 1])
+        with col_1: 
+            price = st.number_input('Amount', min_value = 0.0, step = 0.01)
+        with col_2: 
+            going_from = st.text_input('From')
+        with col_3:
+            going_to = st.text_input('To')
+
+        # Button calculation
+        if st.button('Convert'): 
+            st.write(f'Amount: ${CurrencyConv.convert(price, going_from, going_to)}')
+
+        # Return button
+        if st.button('Back'): 
+            st.session_state.page = 'MainPage'
+            st.rerun()
         
     # Margin calculator page static method
     @staticmethod
