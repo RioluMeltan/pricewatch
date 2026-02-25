@@ -257,8 +257,9 @@ class MainPage:
     # Static method to import a list from clipboard
     @staticmethod
     def importList() -> None: 
-        st.write('Raw pasted text: ', toCheck)
-        st.write('Split lines: ', toCheck.splitlines())
+
+        # Text area to check
+        toCheck = st.sidebar.text_area('Paste watchlist here: ')
         
         # Iterate through formatted content if an input is detected
         if toCheck.strip(): 
