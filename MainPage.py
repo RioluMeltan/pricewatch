@@ -258,21 +258,8 @@ class MainPage:
     @staticmethod
     def importList() -> None: 
 
-        # Import from clipboard
-        st.markdown('''
-        <script>
-        async function pasteText() {
-            const text = await navigator.clipboard.readText();
-            const streamlitInput = document.getElementById("clipboard_input");
-            streamlitInput.value = text;
-            streamlitInput.dispatchEvent(new Event("input", {bubbles: true}));
-        }
-        pasteText();
-        </script>
-        ''', unsafe_allow_html = True)
-
-        # Iterate through formatted content
-        for i in st.text_input('', key = 'clipboard_input').splitlines(): 
+        # Iterate through formatted content using a text input
+        for i in st.sidebar.text_input('Paste watchlist here: ', key = 'clipboard_input').splitlines(): 
 
             # Append to list
             try: 
@@ -291,7 +278,7 @@ class MainPage:
             toEx += str(i.getIcon()) + ',.,. ' + str(i.getName()) + ',.,. ' + str(i.getPrice()) + ',.,. ' + str(i.getCurrency()) + ',.,. ' + str(i.getDate()) + ',.,. ' + str(i.getDateList()) + ',.,. ' + str(i.getPriceList()) + ',.,. ' + str(i.getPriceRange()) + ',.,. ' + str(i.getReliability()) + ',.,. ' + str(i.getSentiment()) + ',.,. ' + str(i.getFinalRating()) + ',.,. ' + str(i.getResalePrice()) + '\n'
 
         # Exporting to clipboard
-        st.text_input(toEx)
+        st.write(toEx)
 
     # Static method to copy the resale price to the clipboard
     @staticmethod
