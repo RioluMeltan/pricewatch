@@ -259,7 +259,7 @@ class MainPage:
     def importList() -> None: 
 
         # Iterate through formatted content using a text input
-        for i in st.sidebar.text_input('Paste watchlist here: ', key = 'clipboard_input').splitlines(): 
+        for i in st.sidebar.text_input('Paste watchlist here: ').splitlines(): 
 
             # Append to list
             try: 
