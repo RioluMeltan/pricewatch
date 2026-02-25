@@ -271,6 +271,7 @@ class MainPage:
                 st.toast('An error occurred. Ensure that your pasted list is formatted correctly.')
                 st.error(ex)
 
+    # Static method to export a list to clipboard
     @staticmethod
     def exportList() -> None: 
 
