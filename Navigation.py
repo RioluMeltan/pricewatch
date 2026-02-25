@@ -26,6 +26,7 @@ class Navigation:
         st.sidebar.text('Enter Watch Below')
         watchInput = st.sidebar.text_input('Enter watch here')
         searchWatches = st.sidebar.button('Search for Watch')
+        toCheck = st.sidebar.text_area('Paste watchlist here: ')
         importList = st.sidebar.button('Import List from Clipboard')
 
         # Column formatting for buttons
@@ -42,7 +43,7 @@ class Navigation:
 
         with col_3: 
             if st.button('Export Watchlist'): 
-                MainPage.exportList()
+                MainPage.exportList(toCheck)
 
         if searchWatches and watchInput: 
             MainPage.searchWatchesModal(watchInput)
