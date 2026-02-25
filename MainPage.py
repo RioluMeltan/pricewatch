@@ -276,7 +276,7 @@ class MainPage:
 
             # Append to list
             try: 
-                st.session_state.watches.append(Watch(i.split(', ')[0], i.split(', ')[1], i.split(', ')[2], i.split(', ')[3], i.split(', ')[4], i.split(', ')[5], i.split(', ')[6], i.split(', ')[7], i.split(', ')[8], i.split(', ')[9], i.split(', ')[10], i.split(', ')[11], i.split(', ')[12], i.split(', ')[13]))
+                st.session_state.watches.append(Watch(i.split(',.,. ')[0], i.split(',.,. ')[1], i.split(',.,. ')[2], i.split(',.,. ')[3], i.split(',.,. ')[4], i.split(',.,. ')[5], i.split(',.,. ')[6], i.split(',.,. ')[7], i.split(',.,. ')[8], i.split(',.,. ')[9], i.split(',.,. ')[10], i.split(',.,. ')[11], i.split(',.,. ')[12], i.split(',.,. ')[13]))
             except: 
                 st.toast('An error occurred. Ensure that your pasted list is formatted correctly.')
 
@@ -288,7 +288,7 @@ class MainPage:
 
         # Convert to export format
         for i in st.session_state.watches: 
-            toEx += str(i.getIcon()) + ', ' + str(i.getName()) + ', ' + str(i.getPrice()) + ', ' + str(i.getCurrency()) + ', ' + str(i.getDate()) + ', ' + str(i.getDateList()) + ', ' + str(i.getPriceList()) + ', ' + str(i.getPriceRange()) + ', ' + str(i.getReliability()) + ', ' + str(i.getSentiment()) + ', ' + str(i.getFinalRating()) + ', ' + str(i.getResalePrice()) + '\n'
+            toEx += str(i.getIcon()) + ',.,. ' + str(i.getName()) + ',.,. ' + str(i.getPrice()) + ',.,. ' + str(i.getCurrency()) + ',.,. ' + str(i.getDate()) + ',.,. ' + str(i.getDateList()) + ',.,. ' + str(i.getPriceList()) + ',.,. ' + str(i.getPriceRange()) + ',.,. ' + str(i.getReliability()) + ',.,. ' + str(i.getSentiment()) + ',.,. ' + str(i.getFinalRating()) + ',.,. ' + str(i.getResalePrice()) + '\n'
 
         # Exporting to clipboard
         st.text_input(toEx)
