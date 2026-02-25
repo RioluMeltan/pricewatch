@@ -257,11 +257,6 @@ class MainPage:
     # Static method to import a list from clipboard
     @staticmethod
     def importList() -> None: 
-
-        # Text pasting input
-        toCheck = st.sidebar.text_area('Paste watchlist here: ')
-        
-
         st.write('Raw pasted text: ', toCheck)
         st.write('Split lines: ', toCheck.splitlines())
         
