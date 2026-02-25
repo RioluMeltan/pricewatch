@@ -12,18 +12,12 @@ class CurrencyConv:
         # Exception handling
         try: 
 
-            # Querying ECB for euro-based exchange rates
-            response = requests.get('https://api.exchangerate.host/latest').json()
-            rates = response['rates']
+            # Querying for exchange rates
+            response = requests.get(f'https://hexarate.paikama.co/api/rates/{start}/{end}/latest').json()
+            rate = response['data']['mid']
 
-            # If converting from euro to the target or vice versa
-            if start == 'EUR': 
-                return amount * rates[end]
-            if end == 'EUR': 
-                return amount / rates[start]
-
-            # Otherwise convert to euro before converting to the target currency
-            return (amount / rates[start]) * rates[end]
+            # Return amount times rate
+            return amount * rate
 
         except Exception as ex: 
 
