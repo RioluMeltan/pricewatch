@@ -291,11 +291,7 @@ class MainPage:
             toEx += str(i.getIcon()) + ', ' + str(i.getName()) + ', ' + str(i.getPrice()) + ', ' + str(i.getCurrency()) + ', ' + str(i.getDate()) + ', ' + str(i.getDateList()) + ', ' + str(i.getPriceList()) + ', ' + str(i.getPriceRange()) + ', ' + str(i.getReliability()) + ', ' + str(i.getSentiment()) + ', ' + str(i.getFinalRating()) + ', ' + str(i.getResalePrice()) + '\n'
 
         # Exporting to clipboard
-        st.markdown(f'''
-        <script>
-        navigator.clipboard.writeText("{toEx}");
-        </script>
-        ''', unsafe_allow_html = True)
+        st.text_input(toEx)
 
     # Static method to copy the resale price to the clipboard
     @staticmethod
