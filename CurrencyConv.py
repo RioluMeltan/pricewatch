@@ -25,8 +25,9 @@ class CurrencyConv:
             # Otherwise convert to euro before converting to the target currency
             return (amount / rates[start]) * rates[end]
 
-        except: 
+        except Exception as ex: 
 
             # Returning no price if conversion failed
             st.error('Currency conversion failed.')
+            st.error(ex)
             return 0.0
