@@ -258,7 +258,17 @@ class MainPage:
     def importList() -> None: 
 
         # Import from clipboard
-        imported_content = clipboard_component.paste_component('Read Clipboard')
+        imported_content = st.markdown('''
+        <script>
+        async function pasteText() {
+            const text = await navigator.clipboard.readText();
+            const streamlitInput = document.getElementById("clipboard_input");
+            streamlitInput.value = text;
+            streamlitInput.dispatchEvent(new Event("input", {bubbles: true}));
+        }
+        pasteText();
+        </script>
+        ''', unsafe_allow_html = True)
 
         # Iterate through formatted content
         for i in imported_content.splitlines(): 
@@ -280,7 +290,11 @@ class MainPage:
             toEx += str(i.getIcon()) + ', ' + str(i.getName()) + ', ' + str(i.getPrice()) + ', ' + str(i.getCurrency()) + ', ' + str(i.getDate()) + ', ' + str(i.getDateList()) + ', ' + str(i.getPriceList()) + ', ' + str(i.getPriceRange()) + ', ' + str(i.getReliability()) + ', ' + str(i.getSentiment()) + ', ' + str(i.getFinalRating()) + ', ' + str(i.getResalePrice()) + '\n'
 
         # Exporting to clipboard
-        pyperclip.copy(toEx)
+        st.markdown(f'''
+        <script>
+        navigator.clipboard.writeText("{toEx}");
+        </script>
+        ''', unsafe_allow_html = True)
 
     # Static method to copy the resale price to the clipboard
     @staticmethod
