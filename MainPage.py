@@ -258,8 +258,11 @@ class MainPage:
     @staticmethod
     def importList() -> None: 
 
+        # Text pasting input
+        toCheck = st.sidebar.text_input('Paste watchlist here: ')
+        
         # Iterate through formatted content using a text input
-        for i in st.sidebar.text_input('Paste watchlist here: ').splitlines(): 
+        for i in toCheck.splitlines(): 
 
             # Append to list
             try: 
