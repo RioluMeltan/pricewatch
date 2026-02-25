@@ -29,5 +29,4 @@ class CurrencyConv:
 
             # Returning no price if conversion failed
             st.error('Currency conversion failed.')
-            st.error(ex)
             return 0.0
