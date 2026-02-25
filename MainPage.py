@@ -259,7 +259,7 @@ class MainPage:
     def importList() -> None: 
 
         # Import from clipboard
-        imported_content = st.markdown('''
+        st.markdown('''
         <script>
         async function pasteText() {
             const text = await navigator.clipboard.readText();
@@ -272,7 +272,7 @@ class MainPage:
         ''', unsafe_allow_html = True)
 
         # Iterate through formatted content
-        for i in imported_content.splitlines(): 
+        for i in st.text_input(key = 'clipboard_input').splitlines(): 
 
             # Append to list
             try: 
