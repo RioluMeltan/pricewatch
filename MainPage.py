@@ -272,7 +272,7 @@ class MainPage:
         ''', unsafe_allow_html = True)
 
         # Iterate through formatted content
-        for i in st.text_input(key = 'clipboard_input').splitlines(): 
+        for i in st.text_input('', key = 'clipboard_input').splitlines(): 
 
             # Append to list
             try: 
