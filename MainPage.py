@@ -263,6 +263,10 @@ class MainPage:
         
         # Iterate through formatted content if an input is detected
         if toCheck.strip(): 
+
+            st.write('Raw pasted text: ', toCheck)
+            st.write('Split lines: ', toCheck.splitlines())
+
             for i in toCheck.splitlines(): 
     
                 # Append to list
