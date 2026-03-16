@@ -73,7 +73,7 @@ class Navigation:
 
         # Button calculation
         if st.button('Convert'): 
-            st.write(f'Amount: ${CurrencyConv.convert(price, going_from, going_to)}')
+            st.write(f'Amount: ${CurrencyConv.convert(price, going_from, going_to)} {going_to.upper()}')
 
         # Return button
         if st.button('Back'): 
