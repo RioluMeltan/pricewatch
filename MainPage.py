@@ -40,15 +40,15 @@ class MainPage:
             total += i
         return total
 
-    # Static bubble sort method for lists
+    # Static method to sort float or int lists in ascending order
     @staticmethod
     def bubbleSort(toSort: list) -> list: 
 
-        # Bubble sort
+        # Nested loop to iterate through the list before iterating to the current element
         for i in range(len(toSort)):
             for j in range(0, len(toSort) - i - 1):
 
-                # Compare elements that are next to each other
+                # Compare elements that are next to each other and determine if a swap should occur
                 if toSort[j].getPrice() > toSort[j + 1].getPrice():
                     toSort[j], toSort[j + 1] = toSort[j + 1], toSort[j]
 
