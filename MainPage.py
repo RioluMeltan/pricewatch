@@ -58,10 +58,10 @@ class MainPage:
     @staticmethod
     def reliabilityCalc(term: str) -> int: 
 
-         # Querying the API for watches
+        # Querying the API for watches
         try: 
 
-            # Parameters and headers for eBay
+            # Setting parameters and headers for eBay, allowing real-time data access using an API key and proper querying
             client_id = st.secrets['CLIENT_ID']
             client_secret = st.secrets['CLIENT_SECRET']
             auth = base64.b64encode(f"{client_id}:{client_secret}".encode()).decode()
@@ -69,7 +69,7 @@ class MainPage:
             data = {'grant_type': 'client_credentials', 'scope': 'https://api.ebay.com/oauth/api_scope'}
             token = requests.post('https://api.ebay.com/identity/v1/oauth2/token', headers = headers, data = data).json()['access_token']
 
-            # Querying for watches
+            # Using the set parameters and HTTPS requests to search for a summary of the items matching the term
             headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
             query = requests.get('https://api.ebay.com/buy/browse/v1/item_summary/search', headers = headers, params = {'q': term, 'limit': 20}).json().get('itemSummaries', [])
 
@@ -78,27 +78,27 @@ class MainPage:
             # Exception handling
             st.error('Request unsuccessful. Try again later.')
     
-        # Variable initation
+        # Variable initation for a list of reliabilities, which are to be eventually combined into one reliability score, along with a price list for price range
         scores = []
         prices = []
         finalScore = 0
 
-        # Iterating through results
+        # Iterating through results using enumeration to access the indexes of the returned query
         for index, i in enumerate(query): 
 
-            # Image status check (weighted 0.15)
+            # This checks if an image is present or not in the listing; more reliable sellers are likely to put an image of the watch (weighted 0.15)
             if 'image' in i and 'imageUrl' in i['image']: 
                 scores.append(0.15)
             else: 
                 scores.append(0.0)
 
-            # Reputation check (weighted 0.35)
+            # This checks the seller reputation to provide a direct measure of how reputable the person putting up the listing is (weighted 0.35)
             try: 
                 scores[index] += float(i['seller']['feedbackPercentage']) * 0.0035
             except: 
                 st.error('Seller info could not be found.')
 
-            # Listing type check (weighted 0.2)
+            # Listings with a fixed price rather than a volatile auction-based price setting is more stable and reliable to resell (weighted 0.2)
             try: 
                 if i['buyingOptions'][0] == 'FIXED_PRICE': 
                     scores[index] += 0.2
@@ -107,20 +107,18 @@ class MainPage:
             except:
                 st.error('Pricing info could not be found.')
             
-            # Append price to prices
+            # Appending the current price to the price list for price range checking later
             try: 
                 prices.append(float(i['price']['value']))
             except: 
                 st.error('Price could not be found.')
 
-        # Final averaging
+        # This averages the final reliability score, as the price range check at the end is only a single value to be added
         finalScore += MainPage.findSum(scores) / len(scores)
 
-        # Price checking (weighted 0.3)
+        # The price range to average price ratio is used as a measurement of reliability, with a lower range of prices being less volatile and thus more reliable (weighted 0.3)
         if (MainPage.findMax(prices) - MainPage.findMin(prices)) / (MainPage.findSum(prices) / len(prices)) <= 1: 
-            finalScore += (MainPage.findMax(prices) - MainPage.findMin(prices)) / (MainPage.findSum(prices) / len(prices)) * 0.3
-        elif (MainPage.findMax(prices) - MainPage.findMin(prices)) / (MainPage.findSum(prices) / len(prices)) > 1: 
-            finalScore += 0.3
+            finalScore += 0.3 - (MainPage.findMax(prices) - MainPage.findMin(prices)) / (MainPage.findSum(prices) / len(prices)) * 0.3
 
         return int(finalScore * 100)
 
