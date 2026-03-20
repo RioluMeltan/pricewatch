@@ -127,7 +127,7 @@ class MainPage:
     def sentimentCalc(term: str) -> float: 
 
         # Exception handling
-        try: 
+     #   try: 
         
             # Accessing and searching the past week of GoogleNews for a watch
             news = GoogleNews.GoogleNews(lang = 'en', period = '7d')
@@ -147,10 +147,10 @@ class MainPage:
             # Calculating an average sentiment for all results
             avgSentiment = MainPage.findSum(sentimentScores) / len(sentimentScores) if sentimentScores else 0.0
 
-        except: 
+       # except: 
 
             # Default sentiment if something fails
-            avgSentiment = 0.0
+          #  avgSentiment = 0.0
 
         return avgSentiment
 
