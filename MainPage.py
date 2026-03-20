@@ -141,8 +141,8 @@ class MainPage:
         sia = SentimentIntensityAnalyzer(lexicon_file = 'assets/vader_lexicon.txt')
 
         # Setting original sentiment score as headline sentiment score before adding the sentiment scores of the paragraphs
-        sentimentScores = [sia.polarity_scores(headline.decode('utf-8')['compound']) for headline in headlines]
-        sentimentScores += [sia.polarity_scores(paragraph.decode('utf-8')['compound']) for paragraph in paragraphs]
+        sentimentScores = [sia.polarity_scores(headline['compound']) for headline in headlines]
+        sentimentScores += [sia.polarity_scores(paragraph['compound']) for paragraph in paragraphs]
 
         # Calculating an average sentiment for all results
         avgSentiment = MainPage.findSum(sentimentScores) / len(sentimentScores) if sentimentScores else 0.0
