@@ -132,11 +132,12 @@ class MainPage:
         # Accessing and searching the past week of GoogleNews for a watch
         news = GoogleNews.GoogleNews(lang = 'en', period = '7d')
         news.search(term)
-        st.toast(news.result())
 
         # Separating headlines and paragraphs into lists
         headlines = [item['title'] for item in news.result() if item.get('title')]
         paragraphs = [body['desc'] for body in news.result() if body.get('title')]
+        st.toast(headlines)
+        st.toast(paragraphs)
 
         # Accessing a pre-existing lexicon for sentiment analysis
         sia = SentimentIntensityAnalyzer(lexicon_file = 'assets/vader_lexicon.txt')
