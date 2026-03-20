@@ -132,6 +132,7 @@ class MainPage:
         # Accessing and searching the past week of GoogleNews for a watch
         news = GoogleNews.GoogleNews(lang = 'en', period = '7d')
         news.search(term)
+        st.warning(news)
 
         # Separating headlines and paragraphs into lists
         headlines = [item['title'] for item in news.result() if item.get('title')]
