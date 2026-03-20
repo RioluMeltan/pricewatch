@@ -129,23 +129,23 @@ class MainPage:
         # Exception handling
         try: 
         
-        # Accessing and searching the past week of GoogleNews for a watch
-        news = GoogleNews.GoogleNews(lang = 'en', period = '7d')
-        news.search(term)
-
-        # Separating headlines and paragraphs into lists
-        headlines = [item['title'] for item in news.result() if item.get('title')]
-        paragraphs = [body['link'] for body in news.result() if body.get('title')]
-
-        # Accessing a pre-existing lexicon for sentiment analysis
-        sia = SentimentIntensityAnalyzer(lexicon_file = 'assets/vader_lexicon.txt')
-
-        # Setting original sentiment score as headline sentiment score before adding the sentiment scores of the paragraphs
-        sentimentScores = [sia.polarity_scores(headline)['compound'] for headline in headlines]
-        sentimentScores += [sia.polarity_scores(paragraph)['compound'] for paragraph in paragraphs]
-
-        # Calculating an average sentiment for all results
-        avgSentiment = MainPage.findSum(sentimentScores) / len(sentimentScores) if sentimentScores else 0.0
+            # Accessing and searching the past week of GoogleNews for a watch
+            news = GoogleNews.GoogleNews(lang = 'en', period = '7d')
+            news.search(term)
+    
+            # Separating headlines and paragraphs into lists
+            headlines = [item['title'] for item in news.result() if item.get('title')]
+            paragraphs = [body['link'] for body in news.result() if body.get('title')]
+    
+            # Accessing a pre-existing lexicon for sentiment analysis
+            sia = SentimentIntensityAnalyzer(lexicon_file = 'assets/vader_lexicon.txt')
+    
+            # Setting original sentiment score as headline sentiment score before adding the sentiment scores of the paragraphs
+            sentimentScores = [sia.polarity_scores(headline)['compound'] for headline in headlines]
+            sentimentScores += [sia.polarity_scores(paragraph)['compound'] for paragraph in paragraphs]
+    
+            # Calculating an average sentiment for all results
+            avgSentiment = MainPage.findSum(sentimentScores) / len(sentimentScores) if sentimentScores else 0.0
 
         except: 
 
